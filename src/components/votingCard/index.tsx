@@ -1,11 +1,13 @@
-import useVotacion from "../../hooks/useVotaciones";
+import { FC } from "react";
 import { Container, Description, QuestionContainer, Title } from "./styles";
+import { Props } from "./types";
+
 const votacion = {
   id: 3,
   name: "Voting test",
   desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
   question: {
-    desc: "django sucks",
+    desc: "Should we deploy on Friday's?",
     options: [
       {
         number: 1,
@@ -19,7 +21,7 @@ const votacion = {
   },
 };
 
-const VotingCard = () => {
+const VotingCard: FC<Props> = ({ votacion }) => {
   return (
     <Container>
       <Title>
