@@ -1,4 +1,4 @@
-import { Title, Container, Input, Label, LogButton, LoginForm } from "./styles";
+import { Title, Container, Input, Label, LogButton, LoginForm, ErrorContainer } from "./styles";
 
 const Login = () => {
 
