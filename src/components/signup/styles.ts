@@ -9,15 +9,26 @@ export const Container = styled.div`
     border-radius: 8px;
     background-color: #d5d5d5;
     border-color: black;
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
     height: auto;
+`;
+
+export const ErrorContainer = styled.div`
+    text-align: center;
+    border-radius: 8px;
+    background-color: #ff7373;
+    border-color: black;
+    width: 80%;
+    height: auto;
+    margin: auto;
 `;
 
 export const Title = styled.h1`
     font-size: 28px;
     color: #000000;
     font-weight: 800;
-    margin: 5%;
+    margin: 3.33%;
 `;
 
 export const Input = styled.input`
@@ -36,20 +47,29 @@ export const Input = styled.input`
 export const Label = styled.label`
     color: #000000;
     font-size: medium;
+    margin-top: 10px;
 `;
 
 export const RegButton = styled.button`
     background-color: #00aaff;
     color: white;
     border: none;
-    cursor: pointer;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     opacity: 0.9;
     border-radius: 8px;
-    width: max-content;
+    width: 60%;
+    max-width: 600px;
     height: max-content;
+    font-size: 1.2em;
     font-weight: 600;
     margin-top: 15px;
     margin-bottom: 20px;
     padding: 15px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+    background-color: #4677d8;
+    }
 `;
