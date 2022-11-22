@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const LoginForm = styled.form``;
+export const Title = styled.h1`
+    font-size: 28px;
+    color: #000000;
+    font-weight: 800;
+    margin: 5%;
+`;
 
 export const Container = styled.div`
     display: flex;
@@ -13,11 +18,17 @@ export const Container = styled.div`
     height: auto;
 `;
 
-export const Title = styled.h1`
-    font-size: 28px;
+export const Input = styled.input`
+    padding: 15px;
+    margin: auto;
+    display: flex;
+    border-radius: 8px;
+    background: #f1f1f1;
     color: #000000;
-    font-weight: 800;
-    margin: 5%;
+    width: 60%;
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
 `;
 
 export const Label = styled.label`
@@ -41,15 +52,4 @@ export const LogButton = styled.button`
     padding: 15px;
 `;
 
-export const Input = styled.input`
-    padding: 15px;
-    margin: auto;
-    display: flex;
-    border-radius: 8px;
-    background: #f1f1f1;
-    color: #000000;
-    width: 60%;
-    outline: none;
-    border: none;
-    margin-bottom: 20px;
-`;
+export const LoginForm = styled.form``;

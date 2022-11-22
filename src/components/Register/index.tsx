@@ -1,6 +1,6 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm } from "./styles";
 
-const Signup = () => {
+const Register = () => {
   
   return (
     <Container>
@@ -27,5 +27,5 @@ const Signup = () => {
   )
 }
 
-export default Signup;
+export default Register;
 

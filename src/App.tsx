@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Signin, Signup } from './components';
+import { Login, Register } from './components';
 import { Details, Home, Layout } from "./pages";
 
 
@@ -9,8 +9,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="signin" element={<Login />} />
+          <Route path="signup" element={<Register />} />
           <Route path="votacion/:id" element={<Details />} />
         </Route>
       </Routes>

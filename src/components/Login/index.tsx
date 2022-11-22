@@ -1,6 +1,6 @@
 import { Title, Container, Input, Label, LogButton, LoginForm } from "./styles";
 
-const Signin = () => {
+const Login = () => {
 
   return (
     <Container>
@@ -18,5 +18,5 @@ const Signin = () => {
   )
 }
 
-export default Signin;
+export default Login;
 
