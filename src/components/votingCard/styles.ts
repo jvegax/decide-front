@@ -1,19 +1,25 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+
+export const Button = styled.button`
   display: flex;
+  width: 330px;
   flex-direction: column;
-  width: 500px;
-  height: 500px;
   border-radius: 18px;
-  background-color: black;
+  background-color: #36393d;
+  padding: 20px;
+  margin-top: 8px;
 `;
 
+export const Container = styled.div`
+  &:hover ${Button} {
+    background-color: #151618;
+  }
+`;
 export const Title = styled.h3`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
   color: #fff;
-  background-color: yellow;
 `;
 
 export const Description = styled.p`
@@ -22,9 +28,9 @@ export const Description = styled.p`
 `;
 
 export const QuestionContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 `;

@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { Container, Description, QuestionContainer, Title } from "./styles";
+import {
+  Button,
+  Container,
+  Title,
+} from "./styles";
 import { Props } from "./types";
 
 const votacion = {
@@ -24,14 +28,9 @@ const votacion = {
 const VotingCard: FC<Props> = ({ votacion }) => {
   return (
     <Container>
-      <Title>
-        {votacion.name} - {votacion.id}
-      </Title>
-      <Description>{votacion.desc}</Description>
-      <QuestionContainer>
-        <p>{votacion.question.options[0].option}</p>
-        <p>{votacion.question.options[1].option}</p>
-      </QuestionContainer>
+      <Button>
+        <Title>{votacion.name}</Title>
+      </Button>
     </Container>
   );
 };

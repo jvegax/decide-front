@@ -7,14 +7,13 @@ const VotingList = () => {
   const { votaciones } = useVotaciones();
   const [loading, setLoading] = useState(true);
 
-  const handleRenderVotaciones = () => votaciones.map((votacion) => <VotingCard votacion={votacion} />);
+  const handleRenderVotaciones = () =>
+    votaciones.map((votacion) => <VotingCard votacion={votacion} />);
 
   return (
     <>
       <h1>Listado de votaciones</h1>
-      <ListContainer>
-      {loading && handleRenderVotaciones()}
-      </ListContainer>
+      <ListContainer>{loading && handleRenderVotaciones()}</ListContainer>
     </>
   );
 };
