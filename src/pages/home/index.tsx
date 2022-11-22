@@ -1,8 +1,11 @@
-import React from "react";
-import { Title } from "./styles";
+import { VotingList } from "../../components";
 
 const Home = () => {
-  return <Title>Home page 🏠</Title>;
+  return (
+    <>
+      <VotingList />
+    </>
+  );
 };
 
 export default Home;
