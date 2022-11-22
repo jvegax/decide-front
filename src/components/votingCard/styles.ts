@@ -3,12 +3,17 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
   width: 330px;
+  height: 65px;
   flex-direction: column;
   border-radius: 18px;
   background-color: #36393d;
   padding: 20px;
   margin-top: 8px;
+  border: none;
+  cursor: pointer;
 `;
 
 export const Container = styled.div`
