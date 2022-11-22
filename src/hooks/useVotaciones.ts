@@ -1,40 +1,83 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
-const MOCK_DATA = {
-  id: 3,
-  name: "Voting test",
-  desc: "description",
-  question: {
-    desc: "django sucks",
-    options: [
-      {
-        number: 1,
-        option: "yes",
-      },
-      {
-        number: 2,
-        option: "yes",
-      },
-    ],
-  },
-  start_date: null,
-  end_date: null,
-  pub_key: null,
-  auths: [
-    {
-      name: "xd",
-      url: "http://localhost:8000",
-      me: true,
+const MOCK_DATA = [
+  {
+    id: 3,
+    name: "Voting test",
+    desc: "description",
+    question: {
+      desc: "question description example",
+      options: [
+        {
+          number: 1,
+          option: "Yes",
+        },
+        {
+          number: 2,
+          option: "No",
+        },
+      ],
     },
-  ],
-  tally: null,
-  postproc: null,
-};
-
+  },
+  {
+    id: 4,
+    name: "Commits policy",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    question: {
+      desc: "question description example",
+      options: [
+        {
+          number: 1,
+          option: "Yes",
+        },
+        {
+          number: 2,
+          option: "No",
+        },
+      ],
+    },
+  },
+  {
+    id: 5,
+    name: "Deploy on Friday's",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    question: {
+      desc: "question description example",
+      options: [
+        {
+          number: 1,
+          option: "Yes",
+        },
+        {
+          number: 2,
+          option: "No",
+        },
+      ],
+    },
+  },
+  {
+    id: 6,
+    name: "Front with React",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    question: {
+      desc: "question description example",
+      options: [
+        {
+          number: 1,
+          option: "Yes",
+        },
+        {
+          number: 2,
+          option: "No",
+        },
+      ],
+    },
+  },
+];
 const useVotacion = () => {
-  const votacion = useMemo(() => MOCK_DATA, []);
-  console.log(votacion);
-  return { votacion };
+  const votaciones = useMemo(() => MOCK_DATA, []);
+  console.log(votaciones);
+  return { votaciones };
 };
 
 export default useVotacion;

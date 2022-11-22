@@ -1,19 +1,30 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+
+export const Button = styled.button`
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 330px;
+  height: 65px;
   flex-direction: column;
-  width: 500px;
-  height: 500px;
   border-radius: 18px;
-  background-color: #fff;
+  background-color: #36393d;
+  padding: 20px;
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
 `;
 
+export const Container = styled.div`
+  &:hover ${Button} {
+    background-color: #151618;
+  }
+`;
 export const Title = styled.h3`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
-  color: #000;
-  background-color: yellow;
+  color: #fff;
 `;
 
 export const Description = styled.p`
@@ -22,9 +33,9 @@ export const Description = styled.p`
 `;
 
 export const QuestionContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 `;
