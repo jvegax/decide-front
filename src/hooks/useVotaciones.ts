@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 const MOCK_DATA = [
   {
-    id: 3,
+    id: "3",
     name: "Voting test",
     desc: "description",
     question: {
@@ -20,7 +20,7 @@ const MOCK_DATA = [
     },
   },
   {
-    id: 4,
+    id: "4",
     name: "Commits policy",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     question: {
@@ -38,7 +38,7 @@ const MOCK_DATA = [
     },
   },
   {
-    id: 5,
+    id: "5",
     name: "Deploy on Friday's",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     question: {
@@ -56,7 +56,7 @@ const MOCK_DATA = [
     },
   },
   {
-    id: 6,
+    id: "6",
     name: "Front with React",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     question: {
@@ -76,7 +76,7 @@ const MOCK_DATA = [
 ];
 const useVotacion = () => {
   const votaciones = useMemo(() => MOCK_DATA, []);
-  console.log(votaciones);
+
   return { votaciones };
 };
 

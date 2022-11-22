@@ -1,6 +1,6 @@
 const SignIn = () => {
   return (
-    <div>VotingList</div>
+    <div>Sign in page</div>
   )
 }
 

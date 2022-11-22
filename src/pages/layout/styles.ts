@@ -18,5 +18,4 @@ export const Content = styled.div`
 
     padding: 20px;
     padding-top: 50px;
-    background-color: #f5f5f5;
 `;
