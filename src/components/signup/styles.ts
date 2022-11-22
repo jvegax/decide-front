@@ -20,22 +20,6 @@ export const Title = styled.h1`
     margin: 5%;
 `;
 
-export const Input = styled.input.attrs(props => ({
-    type: props.type,
-    placeholder: props.name,
-}))`
-    padding: 15px;
-    margin: auto;
-    display: flex;
-    border-radius: 8px;
-    background: #f1f1f1;
-    color: #000000;
-    width: 60%;
-    outline: none;
-    border: none;
-    margin-bottom: 20px;
-`;
-
 export const Label = styled.label`
     color: #000000;
     font-size: medium;
@@ -55,4 +39,20 @@ export const RegButton = styled.button`
     margin-top: 15px;
     margin-bottom: 20px;
     padding: 15px;
+`;
+
+export const Input = styled.input.attrs(props => ({
+    type: props.type,
+    placeholder: props.name,
+}))`
+    padding: 15px;
+    margin: auto;
+    display: flex;
+    border-radius: 8px;
+    background: #f1f1f1;
+    color: #000000;
+    width: 60%;
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
 `;
