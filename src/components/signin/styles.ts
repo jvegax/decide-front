@@ -41,10 +41,7 @@ export const LogButton = styled.button`
     padding: 15px;
 `;
 
-export const Input = styled.input.attrs(props => ({
-    type: props.type,
-    placeholder: props.name,
-}))`
+export const Input = styled.input`
     padding: 15px;
     margin: auto;
     display: flex;
