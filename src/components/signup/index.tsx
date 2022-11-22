@@ -1,22 +1,31 @@
-import { Title, Container, Input, Label, LogButton, LoginForm } from "./styles";
+import { Title, Container, Input, Label, RegButton, RegisterForm } from "./styles";
 
-const Login = () => {
-
+const Signin = () => {
+  
   return (
     <Container>
-      <Title>¡Inicia sesión en Decide!</Title>
-      <LoginForm>
+      <Title>¡Registrate en Decide!</Title>
+      <RegisterForm>
+        <Label>Nombre:
+          <Input type="text" name="Introduce tu nombre"/>
+        </Label>
+        <Label>Apellidos:
+          <Input type="text" name="Introduce tus apellidos"/>
+        </Label>
         <Label>Correo electronico:
-          <Input type="email" name="Introduce tu correo electrónico" />
+          <Input type="email" name="Introduce tu correo electrónico"/>
         </Label>
         <Label>Contraseña:
-          <Input type="password" name="Introduce tu contraseña" />
+          <Input type="password" name="Introduce tu contraseña"/>
         </Label>
-        <LogButton className="btn-register">Iniciar sesion</LogButton>
-      </LoginForm>
+        <Label>Repite la contraseña:
+          <Input type="password" name="Repite tu contraseña"/>
+        </Label>
+        <RegButton className="btn-register">Registrarse</RegButton>
+      </RegisterForm>
     </Container>
   )
 }
 
-export default Login;
+export default Signin;
 

@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export const RegisterForm = styled.form``;
+export const LoginForm = styled.form``;
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    text-align: center;
     border-radius: 8px;
-    background-color: #ffffff;
-    width: 400px;
+    background-color: #d5d5d5;
+    border-color: black;
+    width: 40%;
     height: auto;
 `;
 
@@ -15,6 +17,7 @@ export const Title = styled.h1`
     font-size: 28px;
     color: #000000;
     font-weight: 800;
+    margin: 5%;
 `;
 
 export const Input = styled.input.attrs(props => ({
@@ -38,7 +41,7 @@ export const Label = styled.label`
     font-size: medium;
 `;
 
-export const RegButton = styled.button`
+export const LogButton = styled.button`
     background-color: #00aaff;
     color: white;
     border: none;
@@ -51,4 +54,5 @@ export const RegButton = styled.button`
     font-weight: 600;
     margin-top: 15px;
     margin-bottom: 20px;
+    padding: 15px;
 `;
