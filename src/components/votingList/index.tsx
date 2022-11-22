@@ -8,7 +8,7 @@ const VotingList = () => {
   const [loading, setLoading] = useState(true);
 
   const handleRenderVotaciones = () =>
-    votaciones.map((votacion) => <VotingCard votacion={votacion} />);
+    votaciones.map((votacion) => <VotingCard key={votacion.id}  votacion={votacion} />);
 
   return (
     <>

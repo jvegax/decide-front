@@ -5,10 +5,11 @@ export const Button = styled.button`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 330px;
+  width: 100%;
+  max-width: 600px;
   height: 65px;
   flex-direction: column;
-  border-radius: 18px;
+  border-radius: 9px;
   background-color: #36393d;
   padding: 20px;
   margin-top: 8px;
