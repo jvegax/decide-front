@@ -8,7 +8,7 @@ export const Button = styled.button`
   width: 330px;
   height: 65px;
   flex-direction: column;
-  border-radius: 18px;
+  border-radius: 9px;
   background-color: #36393d;
   padding: 20px;
   margin-top: 8px;
