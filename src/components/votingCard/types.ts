@@ -3,7 +3,7 @@ export type Props = {
 }
 
 export type Votacion = {
-    id: number;
+    id: string;
     name: string;
     desc: string;
     question: {
