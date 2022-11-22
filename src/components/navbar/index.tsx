@@ -6,8 +6,8 @@ const NavBar = () => {
         <Title>Decide 🫵</Title>
         <LinkContainer>
             <a href="/">Votaciones</a>
-            <a href="/signin">Inicio de sesión</a>
-            <a href="/signup">Registro</a>
+            <a href="signin/">Inicio de sesión</a>
+            <a href="signup/">Registro</a>
         </LinkContainer>
     </Nav>
   )
