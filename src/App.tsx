@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import './App.css'
-import { VotingCard } from './components'
-import { Register, Login } from './components'
-import useVotacion from './hooks/useVotaciones'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home, Layout } from "./pages";
+import { Register, Login } from './components';
 
 
 function App() {
   return (
-    <div className="App">
-      <Register />
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
