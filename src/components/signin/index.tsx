@@ -1,18 +1,24 @@
 import { Title, Container, Input, Label, LogButton, LoginForm, ErrorContainer } from "./styles";
+import {useTranslation} from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation();
+  const email = t('email').toString();
+  const password = t('password').toString();
+  const enter_your_email = t('enter_your_email').toString();
+  const enter_password = t('enter_password').toString();
 
-  return (
+    return (
     <Container>
-      <Title>¡Inicia sesión en Decide!</Title>
+      <Title>{t('log_in_to_decide')}</Title>
       <LoginForm>
-        <Label>Correo electronico:
-          <Input type="email" name="Introduce tu correo electrónico" placeholder="Correo electrónico"/>
+        <Label>{email}
+          <Input type="email" name={enter_your_email} placeholder={email} />
         </Label>
-        <Label>Contraseña:
-          <Input type="password" name="Introduce tu contraseña" placeholder="Contraseña" />
+        <Label>{password}
+          <Input type="password" name={enter_password} placeholder={password} />
         </Label>
-        <LogButton className="btn-register">Iniciar sesion</LogButton>
+        <LogButton className="btn-register">{t('login')}</LogButton>
       </LoginForm>
     </Container>
   )

@@ -13,6 +13,9 @@ declare module 'react-i18next' {
 i18n.use(initReactI18next).init({
   resources: languages,
   lng: 'es_ES' as Language,
+  react: {
+    transSupportBasicHtmlNodes: true,
+  }
 });
 
 export default i18n;
