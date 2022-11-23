@@ -20,6 +20,8 @@ const dictionary: Dictionary = {
     enter_your_password_again: 'Introduce tu contraseña de nuevo',
     user_created_successfully: 'Usuario creado correctamente',
     some_error_occurred: 'Ha ocurrido algún error',
+    submit_vote: 'Enviar voto',
+    voting_lists: 'Listado de votaciones',
 };
 
 export default dictionary;

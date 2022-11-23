@@ -18,6 +18,8 @@ const dictionary = {
   enter_your_password_again: 'Enter your password again',
   user_created_successfully: 'User created successfully',
   some_error_occurred: 'Some error occurred',
+  submit_vote: 'Submit vote',
+  voting_lists: 'Voting lists',
 };
 
 export default dictionary;
