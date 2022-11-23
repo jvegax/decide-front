@@ -1,7 +1,10 @@
 import { Title, Container, Input, Label, LogButton, LoginForm, ErrorContainer } from "./styles";
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
+
+  const { token } = useLogin();
 
   const navigate = useNavigate();
 
