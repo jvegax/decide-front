@@ -2,8 +2,8 @@ import { useMemo } from "react";
 
 const useLogin = () => {
     const credentials = {
-        username: "your-name",
-        password: "your-password",
+        username: "joseantonio",
+        password: "80236202n",
     };
 
     const reqOptions = {
@@ -25,8 +25,6 @@ const useLogin = () => {
     const token = useMemo(() => authenticate(), []);
     return { token };
 
-    
-    
 };
 
 export default useLogin;
