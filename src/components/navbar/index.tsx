@@ -11,6 +11,7 @@ function languageButtons() {
         <div>
             <Button hidden={i18n.language == 'en_US'} onClick={() => i18n.changeLanguage('en_US')}>🇺🇸</Button>
             <Button hidden={i18n.language == 'es_ES'} onClick={() => i18n.changeLanguage('es_ES')}>🇪🇸</Button>
+            <Button hidden={i18n.language == 'de_DE'} onClick={() => i18n.changeLanguage('de_DE')}>🇩🇪</Button>
         </div>
     )
 }
