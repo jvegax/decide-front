@@ -1,44 +1,50 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm, ErrorContainer } from "./styles";
 import { useState } from "react";
-import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
-  {/* Parte referente a la funcionalidad con la API,
-      cuando esté terminada la funcionalidad en el Backend
-      se terminará y probara a utilizarlo con la API */ }
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [message, setMessage] = useState("");
+  const [authtoken, setAuthToken] = useState("");
 
-  let handleSubmit = async (e:any) => {
+  const handleAuth = async (e: any) => {
     e.preventDefault();
-    try {
-      let res = await fetch("https://httpbin.org/post", {
-        method: "POST",
-        body: JSON.stringify({
-          username: username,
-          email: email,
-          password: password,
-        }),
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        setPassword2("");
-        setMessage("User created successfully");
-        navigate('/');
-      } else {
-        setMessage("Some error occured");
+
+    const credentials = { username, email, password };
+    const reqOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    };
+
+    const API_URL = "http://127.0.0.1:8000/authentication/register/";
+    const authenticate = async () => {
+      try {
+        const response = await fetch(API_URL, reqOptions);
+        // check if response is ok
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.token);
+          setAuthToken(data.token);
+          navigate("/");
+          setMessage("Usuario creado correctamente");
+        } else if (password!=password2){
+          const data = await response.json();
+          setMessage("Las contraseñas no coinciden");
+        } else {
+          const data = await response.json();
+          setMessage(data.non_field_errors[0]);
+        }
+      } catch (error) {
+        setMessage("Registro aún en desarrollo, disculpe las molestias");
       }
-    } catch (err) {
-      console.log(err);
-    }
+    };
+    authenticate();
   };
 
   {/* Formulario actual y visual, por el momento es lo unico que podemos hacer que funcione*/ }
@@ -47,18 +53,25 @@ const Register = () => {
     <Container>
       <Title>¡Registrate en Decide!</Title>
       <ErrorContainer>{message ? <p>{message}</p> : null}</ErrorContainer>
-      <RegisterForm onSubmit={handleSubmit}>
-        <Label>Nombre de usuario:
-          <Input type="text" value={username} name="Introduce tu nombre de usuario" placeholder="Nombre de usuario" onChange={(e) => setUsername(e.target.value)} />
+      <RegisterForm onSubmit={handleAuth}>
+        <Label>
+          Nombre de usuario:
+          <Input type="text" name="Introduce tu nombre de usuario" placeholder="Nombre de usuario"
+            value={username} onChange={(e) => setUsername(e.target.value)} />
         </Label>
         <Label>Correo electronico:
-          <Input type="email" value={email} name="Introduce tu correo electrónico" placeholder="Correo electrónico" onChange={(e) => setEmail(e.target.value)} />
+          <Input type="email" name="Introduce tu correo electrónico" placeholder="Correo electrónico"
+            value={email} onChange={(e) => setEmail(e.target.value)} />
         </Label>
-        <Label>Contraseña:
-          <Input type="password" value={password} name="Introduce tu contraseña" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
+        <Label>
+          Contraseña:
+          <Input type="password" name="Introduce tu contraseña" placeholder="Contraseña"
+            value={password} onChange={(e) => setPassword(e.target.value)} />
         </Label>
-        <Label>Repite la contraseña:
-          <Input type="password" value={password2} name="Repite tu contraseña" placeholder="Contraseña" onChange={(e) => setPassword2(e.target.value)} />
+        <Label>
+          Contraseña:
+          <Input type="password" name="Repite tu contraseña" placeholder="Contraseña"
+            value={password2} onChange={(e) => setPassword2(e.target.value)} />
         </Label>
         <RegButton className="btn-register" type="submit">Registrarse</RegButton>
       </RegisterForm>
