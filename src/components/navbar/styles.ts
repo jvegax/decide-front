@@ -27,3 +27,11 @@ export const LinkContainer = styled.div`
   gap: 1em;
 `;
 
+export const Button = styled.button`
+    padding: 0.5em 1em;
+    margin: 0.2em;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+`;
