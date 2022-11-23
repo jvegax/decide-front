@@ -1,15 +1,14 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm, ErrorContainer } from "./styles";
-
 import { useState } from "react";
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
   {/* Parte referente a la funcionalidad con la API,
       cuando esté terminada la funcionalidad en el Backend
       se terminará y probara a utilizarlo con la API */ }
-
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -21,20 +20,19 @@ const Register = () => {
       let res = await fetch("https://httpbin.org/post", {
         method: "POST",
         body: JSON.stringify({
-          firstname: firstname,
-          lastname: lastname,
+          username: username,
           email: email,
           password: password,
         }),
       });
       let resJson = await res.json();
       if (res.status === 200) {
-        setFirstname("");
-        setLastname("");
+        setUsername("");
         setEmail("");
         setPassword("");
         setPassword2("");
         setMessage("User created successfully");
+        navigate('/');
       } else {
         setMessage("Some error occured");
       }
@@ -50,11 +48,8 @@ const Register = () => {
       <Title>¡Registrate en Decide!</Title>
       <ErrorContainer>{message ? <p>{message}</p> : null}</ErrorContainer>
       <RegisterForm onSubmit={handleSubmit}>
-        <Label>Nombre:
-          <Input type="text" value={firstname} name="Introduce tu nombre" placeholder="Nombre" onChange={(e) => setFirstname(e.target.value)} />
-        </Label>
-        <Label>Apellidos:
-          <Input type="text" value={lastname} name="Introduce tus apellidos" placeholder="Apellidos" onChange={(e) => setLastname(e.target.value)} />
+        <Label>Nombre de usuario:
+          <Input type="text" value={username} name="Introduce tu nombre de usuario" placeholder="Nombre de usuario" onChange={(e) => setUsername(e.target.value)} />
         </Label>
         <Label>Correo electronico:
           <Input type="email" value={email} name="Introduce tu correo electrónico" placeholder="Correo electrónico" onChange={(e) => setEmail(e.target.value)} />
