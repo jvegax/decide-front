@@ -3,20 +3,20 @@ import {useTranslation} from "react-i18next";
 
 const Login = () => {
   const { t } = useTranslation();
-  const email = t('email').toString();
-  const password = t('password').toString();
-  const enter_your_email = t('enter_your_email').toString();
-  const enter_password = t('enter_password').toString();
+  const email_tras = t('email').toString();
+  const password_tras = t('password').toString();
+  const enter_your_email_tras = t('enter_your_email').toString();
+  const enter_password_tras = t('enter_password').toString();
 
     return (
     <Container>
       <Title>{t('log_in_to_decide')}</Title>
       <LoginForm>
-        <Label>{email}
-          <Input type="email" name={enter_your_email} placeholder={email} />
+        <Label>{email_tras}
+          <Input type="email" name={enter_your_email_tras} placeholder={email_tras} />
         </Label>
-        <Label>{password}
-          <Input type="password" name={enter_password} placeholder={password} />
+        <Label>{password_tras}
+          <Input type="password" name={enter_password_tras} placeholder={password_tras} />
         </Label>
         <LogButton className="btn-register">{t('login')}</LogButton>
       </LoginForm>
