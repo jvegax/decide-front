@@ -46,8 +46,6 @@ const Register = () => {
     };
     authenticate();
   };
-
-  {/* Formulario actual y visual, por el momento es lo unico que podemos hacer que funcione*/ }
   
   return (
     <Container>
@@ -80,4 +78,3 @@ const Register = () => {
 }
 
 export default Register;
-

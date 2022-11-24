@@ -28,6 +28,7 @@ export const LinkContainer = styled.div`
   gap: 1em;
 `;
 
+
 export const NavLink = styled(Link)`
   font-size: 1.2rem;
   font-weight: 500;
@@ -36,3 +37,12 @@ export const NavLink = styled(Link)`
   transition: all 0.2s ease-in-out;
 `;
 
+
+export const Button = styled.button`
+    padding: 0.5em 1em;
+    margin: 0.2em;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+`;
