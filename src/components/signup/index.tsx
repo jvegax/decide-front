@@ -1,6 +1,7 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm, ErrorContainer } from "./styles";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import {useTranslation} from "react-i18next";
 
 const Register = () => {
 
@@ -12,8 +13,14 @@ const Register = () => {
   const [message, setMessage] = useState("");
   const [authtoken, setAuthToken] = useState("");
 
+  const { t } = useTranslation();
+  const user_created_successfully_tras = t('user_created_successfully').toString();
+  const some_error_occurred_tras = t('some_error_occurred').toString();
+  const passwords_dont_match_tras = t('passwords_dont_match').toString();
+
   const handleAuthReg = async (e: any) => {
     e.preventDefault();
+
 
     const credentials = { username, email, password };
     const reqOptions = {
@@ -32,48 +39,59 @@ const Register = () => {
           console.log(data.token);
           setAuthToken(data.token);
           navigate("/");
-          setMessage("Usuario creado correctamente");
+          setMessage(user_created_successfully_tras);
         } else if (password!=password2){
           const data = await response.json();
-          setMessage("Las contraseñas no coinciden");
+          setMessage(passwords_dont_match_tras);
         } else {
           const data = await response.json();
           setMessage(data.non_field_errors[0]);
         }
       } catch (error) {
-        setMessage("Registro aún en desarrollo, disculpe las molestias");
+        setMessage(some_error_occurred_tras);
       }
     };
     authenticate();
   };
 
   {/* Formulario actual y visual, por el momento es lo unico que podemos hacer que funcione*/ }
-  
+  {/* Se puede cambiar el idioma de la página y se traducirá el formulario, aquí algunas constantes
+  para los placeholders*/ }
+  const username_tras = t('username').toString();
+  const enter_your_username_tras = t('enter_your_username').toString();
+  const surname_tras = t('surname').toString();
+  const enter_your_surname_tras = t('enter_your_surname').toString();
+  const password_tras = t('password').toString();
+  const enter_password_tras = t('enter_password').toString();
+  const confirm_password_tras = t('confirm_password').toString();
+  const enter_your_password_again_tras = t('enter_password_again').toString();
+  const enter_your_email_tras = t('enter_your_email').toString();
+  const email_tras = t('email').toString();
   return (
     <Container>
-      <Title>¡Registrate en Decide!</Title>
+      <Title>{t('register_to_decide')}</Title>
       <ErrorContainer>{message ? <p>{message}</p> : null}</ErrorContainer>
       <RegisterForm onSubmit={handleAuthReg}>
         <Label>
-          Nombre de usuario:
-          <Input type="text" name="Introduce tu nombre de usuario" placeholder="Nombre de usuario"
+          {username_tras}:
+          <Input type="text" name={enter_your_username_tras} placeholder={username_tras}
             value={username} onChange={(e) => setUsername(e.target.value)} />
         </Label>
-        <Label>Correo electronico:
-          <Input type="email" name="Introduce tu correo electrónico" placeholder="Correo electrónico"
+        <Label>{email_tras}:
+          <Input type="email" name={enter_your_email_tras} placeholder={email_tras}
             value={email} onChange={(e) => setEmail(e.target.value)} />
         </Label>
         <Label>
-          Contraseña:
-          <Input type="password" name="Introduce tu contraseña" placeholder="Contraseña"
+          {password_tras}:
+          <Input type="password" name={enter_password_tras} placeholder={password_tras}
             value={password} onChange={(e) => setPassword(e.target.value)} />
         </Label>
         <Label>
-          Contraseña:
-          <Input type="password" name="Repite tu contraseña" placeholder="Contraseña"
+          {confirm_password_tras}:
+          <Input type="password" name={enter_your_password_again_tras} placeholder={confirm_password_tras}
             value={password2} onChange={(e) => setPassword2(e.target.value)} />
         </Label>
-        <RegButton className="btn-register" onClick={handleAuthReg}>Registrarse</RegButton>
+        <RegButton className="btn-register" onClick={handleAuthReg}>{t('register')}</RegButton>
       </RegisterForm>
     </Container>
   )

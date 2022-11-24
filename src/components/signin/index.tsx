@@ -1,8 +1,17 @@
 import { Title, Container, Input, Label, LogButton, LoginForm, ErrorContainer } from "./styles";
+import {useTranslation} from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 const Login = () => {
+  const { t } = useTranslation();
+  const user_created_successfully_tras = t('user_created_successfully').toString();
+  const some_error_occurred_tras = t('some_error_occurred').toString();
+  const cant_login_tras = t('cant_login').toString();
+  const enter_your_username_tras = t('enter_your_username').toString();
+  const username_tras = t('username').toString();
+  const password_tras = t('password').toString();
+  const enter_your_password_tras = t('enter_your_password').toString();
 
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -30,35 +39,36 @@ const Login = () => {
           console.log(data.token);
           setAuthToken(data.token);
           navigate("/");
-          setMessage("Usuario creado correctamente");
+          setMessage(user_created_successfully_tras);
         } else {
           const data = await response.json();
-          setMessage("No se puede iniciar sesión con estas credenciales");
+          setMessage(cant_login_tras);
         }
       } catch (error) {
-        setMessage("Some error occured");
+        setMessage(some_error_occurred_tras);
       }
     };
     authenticate();
   };
 
+
   return (
     <Container>
-      <Title>¡Inicia sesión en Decide!</Title>
+      <Title>{t('log_in_to_decide')}</Title>
       {message && <ErrorContainer>{message}</ErrorContainer>}
       <LoginForm>
         <Label>
-          Nombre de usuario:
-          <Input type="text" name="Introduce tu nombre de usuario" placeholder="Nombre de usuario"
+          {username_tras}:
+          <Input type="text" name={enter_your_username_tras} placeholder={username_tras}
             value={username} onChange={(e) => setUsername(e.target.value)} />
         </Label>
         <Label>
-          Contraseña:
-          <Input type="password" name="Introduce tu contraseña" placeholder="Contraseña"
+          {password_tras}:
+          <Input type="password" name={enter_your_password_tras} placeholder={password_tras}
             value={password} onChange={(e) => setPassword(e.target.value)} />
         </Label>
         <LogButton onClick={handleAuth} className="btn-register">
-          Iniciar sesion
+          {t('login')}
         </LogButton>
       </LoginForm>
     </Container>
