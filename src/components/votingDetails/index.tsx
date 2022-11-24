@@ -1,8 +1,10 @@
 import { FC } from "react";
 import { Container, Description, Title, OptionContainer,Option,QuestionTitle, Button } from "./styles";
 import { Props } from "./types";
+import {useTranslation} from "react-i18next";
 
 const VotingDetails: FC<Props> = ({ votacion }) => {
+  const {t} = useTranslation();
   return (
     <>
     
@@ -16,7 +18,7 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
         ))}
       </OptionContainer>
     </Container>
-    <Button>Enviar respuesta</Button>
+    <Button>{t('submit_vote')}</Button>
     </>
   );
 };
