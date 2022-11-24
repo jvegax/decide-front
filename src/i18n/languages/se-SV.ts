@@ -2,6 +2,7 @@ const dictionary = {
     voting: 'Röstning',
     login: 'Logga in',
     register: 'Registrera',
+    logout: 'Logga ut', 
     log_in_to_decide: 'Logga in för att Decide!',
     email: 'E-post',
     enter_your_email: 'Ange din e-postadress',

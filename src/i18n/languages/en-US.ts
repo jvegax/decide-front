@@ -2,6 +2,7 @@ const dictionary = {
   voting: 'Voting',
   login: 'Login',
   register: 'Register',
+  logout: 'Logout', 
   log_in_to_decide: 'Log in to Decide!',
   email: 'Email',
   enter_your_email: 'Enter your email',
