@@ -39,10 +39,10 @@ export const Option = styled.p`
   background-color: #151618;
   margin-top: 8px;
   cursor: pointer;
+  font-weight: 600;
   &:hover {
     background-color: #fff;
     color: #000;
-    border: 1px solid #000;
   }
   width: 100%;
 `;

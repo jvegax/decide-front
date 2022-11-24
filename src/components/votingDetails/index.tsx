@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
   Container,
   Description,
@@ -11,6 +11,11 @@ import {
 import { Props } from "./types";
 
 const VotingDetails: FC<Props> = ({ votacion }) => {
+  const [selectedOption, setSelectedOption] = useState("");
+  const handleSelectOption = (e: any) => {
+    e.preventDefault();
+    setSelectedOption(e.target.value);
+  };
   return (
     <>
       <Container>
@@ -19,7 +24,9 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
         <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
         <OptionContainer>
           {votacion?.question?.options?.map((option) => (
-            <Option>{option.option}</Option>
+            <Option key={option.number} onClick={handleSelectOption}>
+              {option.option}
+            </Option>
           ))}
         </OptionContainer>
       </Container>

@@ -19,7 +19,8 @@ export const ErrorContainer = styled.div`
     border-radius: 8px;
     background-color: #ff7373;
     border-color: black;
-    width: 80%;
+    width: 100%;
+    max-width: 300px;
     height: auto;
     margin: auto;
 `;

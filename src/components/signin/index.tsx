@@ -1,14 +1,23 @@
-import { Title, Container, Input, Label, LogButton, LoginForm, ErrorContainer } from "./styles";
-import { useNavigate } from 'react-router-dom';
+import {
+  Title,
+  Container,
+  Input,
+  Label,
+  LoginForm,
+  ErrorContainer,
+  Button,
+} from "./styles";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = () => {
-
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [authtoken, setAuthToken] = useState(localStorage.getItem("authtoken") || "");
+  const [authtoken, setAuthToken] = useState(
+    localStorage.getItem("authtoken") || ""
+  );
 
   const handleAuth = async (e: any) => {
     e.preventDefault();
@@ -32,8 +41,7 @@ const Login = () => {
           navigate("/");
           setMessage("Usuario creado correctamente");
         } else {
-          const data = await response.json();
-          setMessage("No se puede iniciar sesion con estas credenciales");
+          setMessage("Credenciales incorrectas");
         }
       } catch (error) {
         setMessage("Some error occured");
@@ -49,17 +57,27 @@ const Login = () => {
       <LoginForm>
         <Label>
           Nombre de usuario:
-          <Input type="text" name="Introduce tu nombre de usuario" placeholder="Nombre de usuario"
-            value={username} onChange={(e) => setUsername(e.target.value)} />
+          <Input
+            type="text"
+            name="Introduce tu nombre de usuario"
+            placeholder="Nombre de usuario"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </Label>
         <Label>
           Contraseña:
-          <Input type="password" name="Introduce tu contraseña" placeholder="Contraseña"
-            value={password} onChange={(e) => setPassword(e.target.value)} />
+          <Input
+            type="password"
+            name="Introduce tu contraseña"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </Label>
-        <LogButton onClick={handleAuth} className="btn-register">
+        <Button onClick={handleAuth} className="btn-register">
           Iniciar sesion
-        </LogButton>
+        </Button>
       </LoginForm>
     </Container>
   );
