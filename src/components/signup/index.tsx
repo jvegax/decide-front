@@ -12,12 +12,12 @@ const Register = () => {
   const [message, setMessage] = useState("");
   const [authtoken, setAuthToken] = useState("");
 
-  const handleAuth = async (e: any) => {
+  const handleAuthReg = async (e: any) => {
     e.preventDefault();
 
     const credentials = { username, email, password };
     const reqOptions = {
-      method: "POST",
+      method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
     };
@@ -53,7 +53,7 @@ const Register = () => {
     <Container>
       <Title>¡Registrate en Decide!</Title>
       <ErrorContainer>{message ? <p>{message}</p> : null}</ErrorContainer>
-      <RegisterForm onSubmit={handleAuth}>
+      <RegisterForm onSubmit={handleAuthReg}>
         <Label>
           Nombre de usuario:
           <Input type="text" name="Introduce tu nombre de usuario" placeholder="Nombre de usuario"
@@ -73,7 +73,7 @@ const Register = () => {
           <Input type="password" name="Repite tu contraseña" placeholder="Contraseña"
             value={password2} onChange={(e) => setPassword2(e.target.value)} />
         </Label>
-        <RegButton className="btn-register" type="submit">Registrarse</RegButton>
+        <RegButton className="btn-register" onClick={handleAuthReg}>Registrarse</RegButton>
       </RegisterForm>
     </Container>
   )

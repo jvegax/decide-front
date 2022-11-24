@@ -15,7 +15,7 @@ const Login = () => {
 
     const credentials = { username, password };
     const reqOptions = {
-      method: "POST",
+      method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
     };
@@ -33,7 +33,7 @@ const Login = () => {
           setMessage("Usuario creado correctamente");
         } else {
           const data = await response.json();
-          setMessage("No se puede iniciar sesion con estas credenciales");
+          setMessage("No se puede iniciar sesión con estas credenciales");
         }
       } catch (error) {
         setMessage("Some error occured");
