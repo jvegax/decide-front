@@ -1,4 +1,5 @@
 export type Voting = {
+  key: number;
   id: number;
   name: string;
   desc: string;

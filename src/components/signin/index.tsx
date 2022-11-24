@@ -8,7 +8,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [authtoken, setAuthToken] = useState("");
+  const [authtoken, setAuthToken] = useState(localStorage.getItem("authtoken") || "");
 
   const handleAuth = async (e: any) => {
     e.preventDefault();

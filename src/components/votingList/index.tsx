@@ -4,9 +4,12 @@ import { ListContainer } from "./styles";
 
 const VotingList = () => {
   const { votaciones, loading } = useVotaciones();
-
+  console.log(votaciones);
   const handleRenderVotaciones = () =>
-    votaciones.map((votacion) => <VotingCard key={votacion.id}  votacion={votacion} />);
+    votaciones.map((votacion) => {
+      console.log(votacion);
+      return <VotingCard key={votacion.id} votacion={votacion} />;
+    });
 
   return (
     <>

@@ -38,7 +38,6 @@ const useVotaciones = () => {
           postproc: voting.postproc,
         };
       });
-      console.log(votaciones);
       setVotaciones(votaciones);
       setLoading(false);
       return votaciones;
