@@ -17,7 +17,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [authtoken, setAuthToken] = useState("");
+  const [authtoken, setAuthToken] = useState(localStorage.getItem("authtoken") || "");
 
   const handleAuth = async (e: any) => {
     e.preventDefault();
@@ -38,6 +38,7 @@ const Login = () => {
           const data = await response.json();
           console.log(data.token);
           setAuthToken(data.token);
+          localStorage.setItem("authtoken", data.token);
           navigate("/");
           setMessage(user_created_successfully_tras);
         } else {

@@ -26,6 +26,7 @@ const NavBar = () => {
             <Link to="/">{t('voting')}</Link>
             <Link to='signin/'>{t('login')}</Link>
             <Link to="signup/">{t('register')}</Link>
+            <Link to="logout/">{t('logout')}</Link>
 
         </LinkContainer>
     </Nav>
