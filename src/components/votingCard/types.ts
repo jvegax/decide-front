@@ -1,17 +1,32 @@
-export type Props = {
-    votacion: Votacion;
+export type Props ={
+  votacion: Voting;
+  key: number;
 }
-
-export type Votacion = {
-    id: string;
+export type Voting = {
+    key: number;
+    id: number;
     name: string;
     desc: string;
     question: {
-        desc: string;
-
-        options: {
-            number: number;
-            option: string;
-        }[];
-    }
-}
+      desc: string;
+      options: Option[];
+    };
+    start_date: any;
+    end_date: any;
+    pub_key: any;
+    auths: [
+      {
+        name: string;
+        url: string;
+        me: boolean;
+      }
+    ];
+    tally: any;
+    postproc: any;
+  };
+  
+  export type Option = {
+      number: number;
+      option: string;
+  };
+  
