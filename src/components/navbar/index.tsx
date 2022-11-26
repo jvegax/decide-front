@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button,LinkContainer, NavBar as Nav, Title } from './styles';
 import {useTranslation} from "react-i18next";
-import languages from "../../i18n/languages";
 
 function languageButtons() {
     const { i18n } = useTranslation();
@@ -27,6 +26,7 @@ const NavBar = () => {
             <Link to="/">{t('voting')}</Link>
             <Link to='signin/'>{t('login')}</Link>
             <Link to="signup/">{t('register')}</Link>
+            <Link to="logout/">{t('logout')}</Link>
 
         </LinkContainer>
     </Nav>

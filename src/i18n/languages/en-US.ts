@@ -2,6 +2,7 @@ const dictionary = {
   voting: 'Voting',
   login: 'Login',
   register: 'Register',
+  logout: 'Logout', 
   log_in_to_decide: 'Log in to Decide!',
   email: 'Email',
   enter_your_email: 'Enter your email',
@@ -18,6 +19,10 @@ const dictionary = {
   some_error_occurred: 'Some error occurred',
   submit_vote: 'Submit vote',
   voting_lists: 'Voting lists',
+  cant_login: 'Its not possible to login with these credentials',
+  username: 'Username',
+  enter_your_username: 'Enter your username',
+  passwords_dont_match: 'Passwords dont match',
 };
 
 export default dictionary;

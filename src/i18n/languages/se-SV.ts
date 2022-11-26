@@ -2,6 +2,7 @@ const dictionary = {
     voting: 'Röstning',
     login: 'Logga in',
     register: 'Registrera',
+    logout: 'Logga ut', 
     log_in_to_decide: 'Logga in för att Decide!',
     email: 'E-post',
     enter_your_email: 'Ange din e-postadress',
@@ -18,6 +19,10 @@ const dictionary = {
     some_error_occurred: 'Något fel inträffade',
     submit_vote: 'Skicka röst',
     voting_lists: 'Röstningslistor',
+    cant_login: 'Du kan inte logga in med dessa uppgifter',
+    username: 'Användarnamn',
+    enter_your_username: 'Ange ditt användarnamn',
+    passwords_dont_match: 'Lösenorden matchar inte',
 };
 
 export default dictionary;
