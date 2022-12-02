@@ -1,105 +1,53 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Voting } from "../components/votingList/types";
 
-const MOCK_DATA = [
-  {
-    id: "1",
-    name: "DP2 no tiene sentido",
-    desc: "La asignatura no tiene ningun sentido",
-    question: {
-      desc: "¿Crees que la asignatura tiene sentido?",
-      options: [
-        {
-          number: 1,
-          option: "Yes",
-        },
-        {
-          number: 2,
-          option: "No",
-        },
-      ],
-    },
-  },
-  {
-    id: "2",
-    name: "Politica de commits",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    question: {
-      desc: "¿Deberíamos redactar una politica de commits?",
-      options: [
-        {
-          number: 1,
-          option: "Si",
-        },
-        {
-          number: 2,
-          option: "No",
-        },
-      ],
-    },
-  },
-  {
-    id: "3",
-    name: "Desplegar los viernes",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    question: {
-      desc: "¿Deberíamos aspirar a desplegar los viernes?",
-      options: [
-        {
-          number: 1,
-          option: "Si",
-        },
-        {
-          number: 3,
-          option: "Sí, pero que lo haga otro.",
-        },
-        {
-          number: 2,
-          option: "¿Qué te has fumado?",
-        },
-      ],
-    },
-  },
-  {
-    id: "4",
-    name: "Front con React",
-    desc: "Esta encuesta se va a realizar para saber si el equipo de desarrollo quiere que el front se haga con React",
-    question: {
-      desc: "¿Deberíamos hacer el front con React?",
-      options: [
-        {
-          number: 1,
-          option: "Si",
-        },
-        {
-          number: 2,
-          option: "Sí",
-        },
-      ],
-    },
-  },
-  {
-    id: "5",
-    name: "Deja de usar jQuery, estamos en 2022",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    question: {
-      desc: "¿Deberíamos dejar de usar jQuery?",
-      options: [
-        {
-          number: 1,
-          option: "Si",
-        },
-        {
-          number: 2,
-          option: "Sí",
-        },
-      ],
-    },
-  },
-];
-const useVotacion = () => {
-  const votaciones = useMemo(() => MOCK_DATA, []);
+const useVotaciones = () => {
+  const [votaciones, setVotaciones] = useState<Voting[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  return { votaciones };
+  const getVotaciones =  async () => {
+      setLoading(true);
+      const url = "http://127.0.0.1:8000/voting/";
+      const response = await fetch(url);
+      const data = await response.json();
+      const votaciones: Voting[] = data.map((voting: any) => {
+        return {
+          id: voting.id,
+          name: voting.name,
+          desc: voting.desc,
+          question: {
+            desc: voting.question.desc,
+            options: voting.question.options.map((option: any) => {
+              return {
+                number: option.number,
+                option: option.option,
+              };
+            }),
+          },
+          start_date: voting.start_date,
+          end_date: voting.end_date,
+          pub_key: voting.pub_key,
+          auths: voting.auths.map((auth: any) => {
+            return {
+              name: auth.name,
+              url: auth.url,
+              me: auth.me,
+            };
+          }),
+          tally: voting.tally,
+          postproc: voting.postproc,
+        };
+      });
+      setVotaciones(votaciones);
+      setLoading(false);
+      return votaciones;
+    };
+
+  useEffect(() => {
+    getVotaciones();
+  }, []);
+
+  return { votaciones, loading };
 };
 
-export default useVotacion;
+export default useVotaciones;
