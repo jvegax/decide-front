@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login, Logout, Register } from './components';
+import { Login, Logout, Register, Visualizer } from './components';
 import { Details, Home, Layout } from "./pages";
 
 
@@ -13,6 +13,7 @@ function App() {
           <Route path="signup/" element={<Register />} />
           <Route path="votacion/:id" element={<Details />} />
           <Route path="logout/" element={<Logout />} />
+          <Route path="visualizer/" element={<Visualizer />} />
         </Route>
       </Routes>
     </BrowserRouter>
