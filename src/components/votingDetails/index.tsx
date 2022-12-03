@@ -23,7 +23,7 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
         <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
         <OptionContainer>
           {votacion?.question?.options?.map((option) => (
-            <Option>{option.option}</Option>
+            <Option key={option.number}>{option.option}</Option>
           ))}
         </OptionContainer>
       </Container>

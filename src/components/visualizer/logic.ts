@@ -1,24 +1,14 @@
-import { useMemo } from "react";
 import type { Voting } from "../votingCard/types";
 
 type Props = {
-  votacion: Voting;
-};
-
-type VotingResults = {
-  results: Voting["postproc"];
+  votacion: Voting | undefined;
 };
 
 const useLogic = ({ votacion }: Props) => {
-  const results = useMemo<VotingResults>(() => {
-    const results = votacion?.postproc;
-    return { results };
-  }, [votacion]);
 
-  const finished = useMemo(() => {
-    return votacion?.tally !== null ? true : false;
-  }, [votacion]);
-
+  const results: Voting["postproc"] | undefined =  votacion?.postproc;
+  const finished = votacion?.tally ?? false;
+  const tally = votacion?.tally;
   return { finished, results };
 };
 
