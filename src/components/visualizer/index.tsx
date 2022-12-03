@@ -10,9 +10,13 @@ import {
 } from "./styles";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
+import useLogic from "./logic";
 
 const VotingVisualizer: FC<Props> = ({ votacion }) => {
   const { t } = useTranslation();
+  const { results, finished } = useLogic({ votacion });
+
+  const handleRenderVisualizer = () => {};
 
   return (
     <>
