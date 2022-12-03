@@ -23,6 +23,7 @@ const dictionary = {
     username: 'Användarnamn',
     enter_your_username: 'Ange ditt användarnamn',
     passwords_dont_match: 'Lösenorden matchar inte',
+    results: 'Visa resultat',
 };
 
 export default dictionary;

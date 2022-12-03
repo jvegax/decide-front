@@ -66,3 +66,23 @@ export const Button = styled.button`
   font-size: 1.2em;
   font-weight: 600;
 `;
+
+export const ButtonResult = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  height: 65px;
+  border-radius: 9px;
+  background-color: #27d733;
+  padding: 20px;
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #529f57;
+  }
+  font-size: 1.2em;
+  font-weight: 600;
+`;

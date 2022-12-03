@@ -22,9 +22,10 @@ const dictionary: Dictionary = {
   submit_vote: 'Enviar voto',
   voting_lists: 'Listado de votaciones',
   cant_login: 'No se puede iniciar sesión con estas credenciales',
-    username: 'Nombre de usuario',
-    enter_your_username: 'Introduce tu nombre de usuario',
-    passwords_dont_match: 'Las contraseñas no coinciden',
+  username: 'Nombre de usuario',
+  enter_your_username: 'Introduce tu nombre de usuario',
+  passwords_dont_match: 'Las contraseñas no coinciden',
+  results: 'Mostrar resultados',
 };
 
 export default dictionary;

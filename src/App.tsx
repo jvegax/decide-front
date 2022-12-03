@@ -13,7 +13,7 @@ function App() {
           <Route path="signup/" element={<Register />} />
           <Route path="votacion/:id" element={<Details />} />
           <Route path="logout/" element={<Logout />} />
-          <Route path="visualizer/" element={<Visualizer />} />
+          <Route path="visualizer/:id" element={<Visualizer />} />
         </Route>
       </Routes>
     </BrowserRouter>

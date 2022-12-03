@@ -23,6 +23,7 @@ const dictionary = {
   username: 'Username',
   enter_your_username: 'Enter your username',
   passwords_dont_match: 'Passwords dont match',
+  results: 'Show results',
 };
 
 export default dictionary;

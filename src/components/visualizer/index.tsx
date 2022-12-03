@@ -2,9 +2,13 @@ import { FC } from "react";
 import { Container, Description, Title, OptionContainer, Option, QuestionTitle, Button } from "./styles";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
+import useVisualizer from "../../hooks/useVisualizer";
+import useVotacion from "../../hooks/useVotacion";
 
-const VotingDetails: FC<Props> = ({ votacion }) => {
+const VotingVisualizer: FC<Props> = ({ votacion }) => {
+
     const { t } = useTranslation();
+
     return (
     <>
         <Container>
@@ -13,7 +17,7 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
             <Description>{votacion?.desc}</Description>
             <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
             <OptionContainer>
-                <progress value="60"/>
+                <progress value="60" max="100"/>
                 {votacion?.question?.options?.map((option) => (
                     <Option>{option.option}</Option>
                 ))}
@@ -24,4 +28,4 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
     );
 };
 
-export default VotingDetails;
+export default VotingVisualizer;
