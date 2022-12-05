@@ -12,6 +12,7 @@ import {
   ChartContainer,
 } from "./styles";
 import ReactApexChart from "react-apexcharts";
+import myGif from "../../images/pepefrg-4.gif";
 
 const VotingVisualizer: FC = () => {
   const { t } = useTranslation();
@@ -67,7 +68,13 @@ const VotingVisualizer: FC = () => {
           </Container>
         </>
       ) : (
-        <h1>Esta votacion no ha terminado!</h1>
+        <>
+        <Container>
+           <Title>¡Esta votacion no ha terminado! </Title>
+           <img src={myGif} alt="my-gif" />
+           <Title>Vuelve mas tarde </Title>
+        </Container>
+        </>
       )}
     </>
   );
