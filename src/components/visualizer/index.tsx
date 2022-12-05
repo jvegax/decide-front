@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
-import useLogic from "./logic";
+import { useLogic } from "./logic";
 import { useParams } from "react-router-dom";
 import useVotaciones from "../../hooks/useVotaciones";
 import { Voting } from "../votingCard/types";
@@ -16,6 +16,7 @@ import {
   OptionGanadora,
   OptionPerdedora,
 } from "./styles";
+import ReactApexChart from "react-apexcharts";
 
 const VotingVisualizer: FC = () => {
   const { t } = useTranslation();
@@ -26,8 +27,12 @@ const VotingVisualizer: FC = () => {
 
   console.log(results);
 
-  const handleRenderVisualizer = () => {
-    return <h1>Votacion terminada</h1>;
+  const handleEtiq = () => {
+    
+  };
+
+  const handleVotos = () => {
+    
   };
 
   return (
@@ -39,8 +44,31 @@ const VotingVisualizer: FC = () => {
             <Title>"{votacion?.name}"</Title>
             <OptionContainer>
               <Description>La opción mas votada ha sido ... 🥁 🥁</Description>
-              <OptionGanadora>d</OptionGanadora>
-              <OptionPerdedora>d</OptionPerdedora>
+              <ReactApexChart
+                options={{
+                  chart: {
+                    width: 400,
+                    type: "pie",
+                  },
+                  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+                  responsive: [
+                    {
+                      breakpoint: 480,
+                      options: {
+                        chart: {
+                          width: 300,
+                        },
+                        legend: {
+                          position: "bottom",
+                        },
+                      },
+                    },
+                  ],
+                }}
+                series={[44, 55, 13, 43, 22]}
+                type="pie"
+                width={380}
+              />
             </OptionContainer>
           </Container>
         </>
