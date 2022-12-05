@@ -9,7 +9,9 @@ const useLogic = ({ votacion }: Props) => {
   const results: Voting["postproc"] | undefined =  votacion?.postproc;
   const finished = votacion?.tally ?? false;
   const tally = votacion?.tally;
+  console.log({results});
   return { finished, results };
+  
 };
 
 export default useLogic;

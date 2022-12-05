@@ -5,58 +5,46 @@ import useLogic from "./logic";
 import { useParams } from "react-router-dom";
 import useVotaciones from "../../hooks/useVotaciones";
 import { Voting } from "../votingCard/types";
-
-const votacionEjemplo = {
-  id: 8,
-  name: "Desplegar los viernes",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla posuere consequat auctor. Fusce suscipit mauris augue, et porttitor tortor ullamcorper a. Suspendisse consequat sed augue id dignissim. \r\n\r\nCras molestie lectus sed risus tincidunt, a ultrices tellus feugiat. Etiam dictum enim eu elit fermentum, ac hendrerit nisl maximus",
-  question: {
-    desc: "¿Deberíamos desplegar los viernes?",
-    options: [
-      {
-        number: 1,
-        option: "Si",
-      },
-      {
-        number: 2,
-        option: "No",
-      },
-      {
-        number: 3,
-        option: "Sí, pero que lo haga otro",
-      },
-    ],
-  },
-  start_date: null,
-  end_date: null,
-  pub_key: null,
-  auths: [
-    {
-      name: "xd",
-      url: "http://localhost:8000",
-      me: true,
-    },
-  ],
-  tally: null,
-  postproc: null,
-};
+import {
+  Button,
+  Container,
+  Description,
+  Option,
+  OptionContainer,
+  QuestionTitle,
+  Title,
+  OptionGanadora,
+  OptionPerdedora
+} from "./styles";
 
 const VotingVisualizer: FC = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { votaciones } = useVotaciones();
   const votacion = votaciones.find((votacion) => votacion.id === Number(id));
-  const { results, finished } = useLogic({votacion});
-
+  const { results, finished } = useLogic({ votacion });
 
   const handleRenderVisualizer = () => {
     return <h1>Votacion terminada</h1>;
   };
-
+  
+  const opciones = votacion?.postproc;
+  
   return (
     <>
       {finished ? (
-        <h1>Ha terminado</h1>
+        <>
+          <Container>
+            <Title>Estos son los resultados de: </Title>
+            <Title>"{votacion?.name}"</Title>
+            <OptionContainer>
+              <Description>La opción mas votada ha sido ... 🥁 🥁</Description>
+              <OptionGanadora>{ votacion?.postproc[0]?.option ?? '' }</OptionGanadora>
+              <OptionPerdedora>{votacion?.postproc[1]?.option}</OptionPerdedora>
+              <OptionPerdedora>{votacion?.postproc[2]?.option}</OptionPerdedora>
+            </OptionContainer>
+          </Container>
+        </>
       ) : (
         <h1>Esta votacion no ha terminado!</h1>
       )}

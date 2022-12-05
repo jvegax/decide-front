@@ -47,6 +47,41 @@ export const Option = styled.p`
   width: 100%;
 `;
 
+export const OptionGanadora = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 9px;
+  background-color: #27d733;
+  margin-top: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: #529f57;
+    color: #000;
+    border: 1px solid #000;
+  }
+  width: 100%;
+`;
+
+export const OptionPerdedora = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 9px;
+  background-color: #ff4a4a;
+  margin-top: 8px;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    background-color: #ae3030;
+    color: #000;
+    border: 1px solid #000;
+  }
+  width: 100%;
+`;
+
 export const Button = styled.button`
   display: flex;
   align-items: center;
