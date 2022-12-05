@@ -14,7 +14,7 @@ import {
   QuestionTitle,
   Title,
   OptionGanadora,
-  OptionPerdedora
+  OptionPerdedora,
 } from "./styles";
 
 const VotingVisualizer: FC = () => {
@@ -24,12 +24,12 @@ const VotingVisualizer: FC = () => {
   const votacion = votaciones.find((votacion) => votacion.id === Number(id));
   const { results, finished } = useLogic({ votacion });
 
+  console.log(results);
+
   const handleRenderVisualizer = () => {
     return <h1>Votacion terminada</h1>;
   };
-  
-  const opciones = votacion?.postproc;
-  
+
   return (
     <>
       {finished ? (
@@ -39,9 +39,8 @@ const VotingVisualizer: FC = () => {
             <Title>"{votacion?.name}"</Title>
             <OptionContainer>
               <Description>La opción mas votada ha sido ... 🥁 🥁</Description>
-              <OptionGanadora>{ votacion?.postproc[0]?.option ?? '' }</OptionGanadora>
-              <OptionPerdedora>{votacion?.postproc[1]?.option}</OptionPerdedora>
-              <OptionPerdedora>{votacion?.postproc[2]?.option}</OptionPerdedora>
+              <OptionGanadora>d</OptionGanadora>
+              <OptionPerdedora>d</OptionPerdedora>
             </OptionContainer>
           </Container>
         </>

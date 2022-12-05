@@ -3,6 +3,13 @@ export type Props = {
   key: number;
 };
 
+export type VotingResults = {
+  votes: number;
+  number: number;
+  option: string;
+  postproc: number;
+}[];
+
 export type Voting = {
   key: number;
   id: number;
