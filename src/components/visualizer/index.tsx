@@ -23,17 +23,7 @@ const VotingVisualizer: FC = () => {
   const { id } = useParams();
   const { votaciones } = useVotaciones();
   const votacion = votaciones.find((votacion) => votacion.id === Number(id));
-  const { results, finished } = useLogic({ votacion });
-
-  console.log(results);
-
-  const handleEtiq = () => {
-    
-  };
-
-  const handleVotos = () => {
-    
-  };
+  const { results, finished, chartData } = useLogic({ votacion });
 
   return (
     <>
@@ -50,7 +40,7 @@ const VotingVisualizer: FC = () => {
                     width: 400,
                     type: "pie",
                   },
-                  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+                  labels: chartData.labels,
                   responsive: [
                     {
                       breakpoint: 480,
@@ -65,7 +55,7 @@ const VotingVisualizer: FC = () => {
                     },
                   ],
                 }}
-                series={[44, 55, 13, 43, 22]}
+                series={chartData.votes}
                 type="pie"
                 width={380}
               />
