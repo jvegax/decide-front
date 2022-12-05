@@ -4,17 +4,12 @@ import { useTranslation } from "react-i18next";
 import { useLogic } from "./logic";
 import { useParams } from "react-router-dom";
 import useVotaciones from "../../hooks/useVotaciones";
-import { Voting } from "../votingCard/types";
 import {
-  Button,
   Container,
   Description,
-  Option,
   OptionContainer,
-  QuestionTitle,
   Title,
-  OptionGanadora,
-  OptionPerdedora,
+  ChartContainer,
 } from "./styles";
 import ReactApexChart from "react-apexcharts";
 
@@ -23,7 +18,7 @@ const VotingVisualizer: FC = () => {
   const { id } = useParams();
   const { votaciones } = useVotaciones();
   const votacion = votaciones.find((votacion) => votacion.id === Number(id));
-  const { results, finished, chartData } = useLogic({ votacion });
+  const { finished, chartData } = useLogic({ votacion });
 
   return (
     <>
@@ -32,34 +27,43 @@ const VotingVisualizer: FC = () => {
           <Container>
             <Title>Estos son los resultados de: </Title>
             <Title>"{votacion?.name}"</Title>
-            <OptionContainer>
-              <Description>La opción mas votada ha sido ... 🥁 🥁</Description>
-              <ReactApexChart
-                options={{
-                  chart: {
-                    width: 400,
-                    type: "pie",
+            <Description>La opción mas votada ha sido ... 🥁 🥁</Description>
+            <ReactApexChart
+              options={{
+                chart: {
+                  width: 380,
+                  type: "pie",
+                },
+                labels: chartData.labels,
+                legend: {
+                  position: "bottom",
+                  labels: {
+                    colors: "#fff",
+                    useSeriesColors: false,
                   },
-                  labels: chartData.labels,
-                  responsive: [
-                    {
-                      breakpoint: 480,
-                      options: {
-                        chart: {
-                          width: 300,
-                        },
-                        legend: {
-                          position: "bottom",
+                },
+                responsive: [
+                  {
+                    breakpoint: 480,
+                    options: {
+                      chart: {
+                        width: 250,
+                      },
+                      legend: {
+                        position: "bottom",
+                        labels: {
+                          colors: "#fff",
+                          useSeriesColors: false,
                         },
                       },
                     },
-                  ],
-                }}
-                series={chartData.votes}
-                type="pie"
-                width={380}
-              />
-            </OptionContainer>
+                  },
+                ],
+              }}
+              series={chartData.votes}
+              type="pie"
+              width={500}
+            />
           </Container>
         </>
       ) : (

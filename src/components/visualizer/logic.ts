@@ -12,10 +12,10 @@ export const useLogic = ({ votacion }: Props) => {
 
   // labels = opcion
   // votes = votos de la opcion
-  const labels = results.map((result) => result.option);
-  const votes = results.map((result) => result.votes);
+  const labels = results?.map((result) => result?.option);
+  const votes = results?.map((result) => result?.votes);
 
-  const chartData ={ labels, votes }
+  const chartData = { labels, votes };
 
   const finished = votacion?.tally ?? false;
 
