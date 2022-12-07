@@ -20,8 +20,6 @@ export const Title = styled.h1`
 
 export const Description = styled.p``;
 
-export const QuestionTitle = styled.h3``;
-
 export const OptionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,42 +45,15 @@ export const Option = styled.p`
   width: 100%;
 `;
 
-export const Button = styled.button`
+export const ChartContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  width: 80%;
   max-width: 600px;
-  height: 65px;
-  border-radius: 9px;
-  background-color: #5f8de8;
   padding: 20px;
-  margin-top: 8px;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #4677d8;
-  }
-  font-size: 1.2em;
-  font-weight: 600;
-`;
-
-export const ButtonResult = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 600px;
-  height: 65px;
+  color: #000;
   border-radius: 9px;
-  background-color: #27d733;
-  padding: 20px;
-  margin-top: 8px;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #529f57;
-  }
-  font-size: 1.2em;
-  font-weight: 600;
+  gap: 1em;
+  background-color: #fff;
 `;

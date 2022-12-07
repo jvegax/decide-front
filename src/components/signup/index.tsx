@@ -1,7 +1,7 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm, ErrorContainer } from "./styles";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
 

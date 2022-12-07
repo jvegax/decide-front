@@ -2,6 +2,14 @@ export type Props = {
   votacion: Voting;
   key: number;
 };
+
+export type VotingResults = {
+  votes: number;
+  number: number;
+  option: string;
+  postproc: number;
+}[];
+
 export type Voting = {
   key: number;
   id: number;
@@ -21,8 +29,15 @@ export type Voting = {
       me: boolean;
     }
   ];
-  tally: any;
-  postproc: any;
+  tally: number[] | null;
+  postproc:
+    | {
+        votes: number;
+        number: number;
+        option: string;
+        postproc: number;
+      }[]
+    | null;
 };
 
 export type Option = {
