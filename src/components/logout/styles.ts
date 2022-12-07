@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
     font-size: 28px;
-    color: #000000;
+    color: #fff;
     font-weight: 800;
     margin: 3.33%;
 `;
@@ -14,7 +14,7 @@ export const Container = styled.div`
     justify-content: center;
     text-align: center;
     border-radius: 8px;
-    background-color: #d5d5d5;
+    background-color: #36393d;
     border-color: black;
     width: 100%;
     max-width: 600px;
