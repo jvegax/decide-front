@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import VotingDetails from "../../components/votingDetails";
+import { Voting } from "../../components/votingList/types";
 import useVotaciones from "../../hooks/useVotaciones";
 
 const Details = () => {
   const { id } = useParams();
   const { votaciones } = useVotaciones();
-  const votacion = votaciones.find((votacion) => votacion.id === Number(id)) || {};
+  const votacion = votaciones.find((votacion) => votacion.id === Number(id)) || null;
 
   return <VotingDetails votacion={votacion} />;
 };
