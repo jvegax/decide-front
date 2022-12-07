@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button,LinkContainer, NavBar as Nav, Title } from './styles';
 import {useTranslation} from "react-i18next";
+import logo from '../../assets/decide-logo.jpg';
 
 function languageButtons() {
     const { i18n } = useTranslation();
@@ -20,7 +21,7 @@ const NavBar = () => {
     const { t } = useTranslation();
   return (
     <Nav>
-        <Title>Decide 🫵</Title>
+        <img src={logo} alt="logo" width={140} />
         <LinkContainer>
             {languageButtons()}
             <Link to="/">{t('voting')}</Link>
