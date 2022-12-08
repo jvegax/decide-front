@@ -1,15 +1,18 @@
-import { createContext } from 'react';
+import { createContext } from "react";
+import { User } from "./DecideProvider";
 
 interface DecideContextProps {
-  // Add any properties that you want to include in the context here
+  userName: string;
   authToken: string;
+  user: User | null;
   handleLogin: (userName: string, authToken: string) => void;
   handleLogout: () => void;
 }
 
 const DecideContext = createContext<DecideContextProps>({
-  // Add any default values here
-  authToken: localStorage.getItem('authToken') || '',
+  userName: localStorage.getItem("userName") || "",
+  authToken: localStorage.getItem("authToken") || "",
+  user: JSON.parse(localStorage.getItem("user") || "{}"),
   handleLogin: () => {},
   handleLogout: () => {},
 });

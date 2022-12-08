@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, LinkContainer, NavBar as Nav, Title } from "./styles";
+import { Button, LinkContainer, NavBar as Nav, ProfileContainer, Title } from "./styles";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/decide-logo.jpg";
 import useDecide from "../../hooks/useDecide";
@@ -40,9 +40,12 @@ function languageButtons() {
 const NavBar = () => {
   const { t } = useTranslation();
   const { authToken } = useDecide();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   return (
     <Nav>
-      <img src={logo} alt="logo" width={190} />
+      <Link to="/">
+        <img src={logo} alt="logo" width={190} />
+      </Link> 
       <LinkContainer>
         {languageButtons()}
         <Link to="/">{t("voting")}</Link>
@@ -55,7 +58,9 @@ const NavBar = () => {
         {authToken && (
           <>
             <Link to="logout/">{t("logout")}</Link>
-            <Link to="profile/">{t("profile")}</Link>
+              <Link to="profile/">
+                {user?.username}
+              </Link>
           </>
         )}
       </LinkContainer>

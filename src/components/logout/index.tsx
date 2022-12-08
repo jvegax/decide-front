@@ -29,8 +29,7 @@ const Logout = () => {
     <Container>
       <Title>¿Seguro que quieres salir de decide?</Title>
       <LogButton onClick={handleAuth} className="btn-register">
-        {" "}
-        Salir{" "}
+        Salir
       </LogButton>
     </Container>
   );
