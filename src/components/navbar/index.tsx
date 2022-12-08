@@ -1,11 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  CreateVotingLink,
-  LinkContainer,
-  NavBar as Nav,
-} from "./styles";
+import { CreateVotingLink, LinkContainer, NavBar as Nav } from "./styles";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/decide-logo.jpg";
 import useDecide from "../../hooks/useDecide";
