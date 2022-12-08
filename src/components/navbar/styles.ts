@@ -21,10 +21,11 @@ export const LinkContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   justify-content: flex-end;
   align-items: center;
   gap: 1em;
+  font-size: 1.2rem;
+  font-weight: 600;
 `;
 
 export const Button = styled.button`
