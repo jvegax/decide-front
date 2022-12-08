@@ -1,32 +1,10 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { ReactNode, useState } from "react";
+import { normalizeUser, User } from "../models/User";
 import DecideContext from "./DecideContext";
 
 interface DecideProviderProps {
   children: ReactNode;
 }
-
-export type User = {
-  id: number;
-  auth_token: string;
-  username: string;
-  email: string;
-  name: string;
-  surname: string;
-  is_staff: boolean;
-};
-
-const normalizeUser = (user: any, token: string | null): User => {
-  return {
-    id: user?.id || 0,
-    auth_token: token ?? "",
-    username: user?.username || "",
-    email: user?.email || "",
-    name: user?.name || "",
-    surname: user?.surname || "",
-    is_staff: user?.is_staff || false,
-  };
-};
 
 const DecideProvider = (props: DecideProviderProps) => {
   const { children } = props;
@@ -94,7 +72,7 @@ const DecideProvider = (props: DecideProviderProps) => {
     setToken(null);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    
+
     const API_URL = "http://127.0.0.1:8000/authentication/logout/";
     const options = {
       method: "POST",

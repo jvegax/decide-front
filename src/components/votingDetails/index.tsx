@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { Container, Description, Title, OptionContainer, Option, QuestionTitle, Button, ButtonResult } from "./styles";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
@@ -33,4 +33,4 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
   );
 };
 
-export default VotingDetails;
+export default memo(VotingDetails);

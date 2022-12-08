@@ -1,45 +1,60 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import useDecide from "../../hooks/useDecide";
 import {
+  Form,
   Input,
   LabelContainer,
+  MainTitle,
+  Paragraph,
   SubmitButton,
   Title,
-  VotingFormContainer,
+  VotingContainer,
 } from "./styles";
-import { Option, VotingProps } from "./types";
+import { Census, Option, VotingProps } from "./types";
 
 const VotingForm = () => {
   const { authenticated } = useAuth();
+  const { user } = useDecide();
   const [name, setName] = useState<VotingProps["name"]>("");
   const [description, setDescription] = useState<VotingProps["desc"]>("");
   const [question, setQuestion] = useState<VotingProps["question"]>("");
   const [options, setOptions] = useState<Option[]>([]);
+  const [voters, setVoters] = useState<Census["voters"]>([]);
 
   return (
     <>
-      {authenticated ? (
+      {authenticated && user?.is_staff ? (
         <>
-          <VotingFormContainer>
-            <Title>Crear nueva votación</Title>
-            <LabelContainer>
-              Titulo de la votación
-              <Input name="titulo" type="text" />
-            </LabelContainer>
-            <LabelContainer>
-              Descripción de la votación
-              <Input name="descripcion" type="text" />
-            </LabelContainer>
-            <LabelContainer>
-              Pregunta
-              <Input name="pregunta" type="text" />
-            </LabelContainer>
-            <LabelContainer>
-              Opciones
-              <Input name="opciones" type="text" />
-              <Input name="opciones" type="text" />
-            </LabelContainer>
-          </VotingFormContainer>
+          <MainTitle>Nueva votación</MainTitle>
+          <Form>
+            <VotingContainer>
+              <Title>Datos de la votación</Title>
+              <LabelContainer>
+                Titulo de la votación
+                <Input name="titulo" type="text" />
+              </LabelContainer>
+              <LabelContainer>
+                Descripción de la votación
+                <Input name="descripcion" type="text" />
+              </LabelContainer>
+              <LabelContainer>
+                Pregunta
+                <Input name="pregunta" type="text" />
+              </LabelContainer>
+              <LabelContainer>
+                Opciones
+                <Input name="opciones" type="text" />
+                <Input name="opciones" type="text" />
+              </LabelContainer>
+            </VotingContainer>
+            <VotingContainer>
+              <Title>Datos del censo</Title>
+              <Paragraph>
+                Aquí debes seleccionar quien tiene permitido realizar votaciones
+              </Paragraph>
+            </VotingContainer>
+          </Form>
           <SubmitButton>Crear votación</SubmitButton>
         </>
       ) : (
@@ -49,4 +64,4 @@ const VotingForm = () => {
   );
 };
 
-export default VotingForm;
+export default memo(VotingForm);

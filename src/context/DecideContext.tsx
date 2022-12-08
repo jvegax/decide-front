@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { User } from "./DecideProvider";
+import { User } from "../models/User";
 
 interface DecideContextProps {
   user: User | null;

@@ -10,3 +10,8 @@ export type Option = {
   value: string;
   key: string;
 };
+
+export type Census = {
+  voting_id: number;
+  voters: number[];
+};

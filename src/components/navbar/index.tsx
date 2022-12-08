@@ -4,10 +4,12 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/decide-logo.jpg";
 import useDecide from "../../hooks/useDecide";
 import LangMenu from "./LangMenu";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
   const { t } = useTranslation();
   const { token, user } = useDecide();
+  const { authenticated } = useAuth();
   return (
     <Nav>
       <Link to="/">
@@ -28,7 +30,7 @@ const NavBar = () => {
             <Link to="profile/">{user?.username}</Link>
           </>
         )}
-        {token && user?.is_staff && (
+        {authenticated && user?.is_staff && (
           <CreateVotingLink to="votacion/create">
             Crear votación
           </CreateVotingLink>

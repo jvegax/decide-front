@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import useVotaciones from "../../hooks/useVotaciones";
 import VotingCard from "../votingCard";
 import { ListContainer } from "./styles";
@@ -21,4 +21,4 @@ const VotingList = () => {
   );
 };
 
-export default VotingList;
+export default memo(VotingList);

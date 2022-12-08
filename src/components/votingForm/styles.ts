@@ -1,6 +1,30 @@
 import styled from "styled-components";
 
-export const VotingFormContainer = styled.div`
+export const Form = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-top: 18px;
+  width: 100%;
+`;
+
+export const MainTitle = styled.p`
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  color:  #36393d;
+`;
+export const Paragraph = styled.p`
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+`;
+
+export const VotingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +33,7 @@ export const VotingFormContainer = styled.div`
   padding: 2em;
   border-radius: 8px;
   width: 100%;
-  max-width: 600px;
+  max-width: 450px;
   background-color: #36393d;
 `;
 
@@ -61,7 +85,7 @@ export const SubmitButton = styled.button`
   border-radius: 8px;
   margin-top: 0.5em;
   width: 100%;
-  max-width: 600px;
+  max-width: 450px;
   border: none;
   font-weight: 600;
   font-size: 1.8rem;
