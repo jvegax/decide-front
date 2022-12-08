@@ -3,12 +3,14 @@ import { User } from "./DecideProvider";
 
 interface DecideContextProps {
   user: User | null;
+  token: string | null;
   handleLogin: (username: string, password: string) => void;
   handleLogout: () => void;
 }
 
 const DecideContext = createContext<DecideContextProps>({
   user: null,
+  token: null,
   handleLogin: () => {},
   handleLogout: () => {},
 });

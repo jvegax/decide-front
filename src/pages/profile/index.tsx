@@ -1,30 +1,41 @@
+import useDecide from "../../hooks/useDecide";
 import { Button, Container, DataContainer, Label, Value } from "./styles";
 
 const Profile = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { user } = useDecide();
 
   return (
     <Container>
       <h1>Perfil</h1>
       <Button>
-        {user.name && (
+        {user?.name && (
           <DataContainer>
             <Label>Name</Label>
-            <Value>{user.name}</Value>
+            <Value>{user?.name}</Value>
           </DataContainer>
         )}
-        {user.username && (
+        {user?.surname && (
+          <DataContainer>
+            <Label>Surname</Label>
+            <Value>{user?.surname}</Value>
+          </DataContainer>
+        )}
+        {user?.username && (
           <DataContainer>
             <Label>Username</Label>
-            <Value>{user.username}</Value>
+            <Value>{user?.username}</Value>
           </DataContainer>
         )}
-        {user.email && (
+        {user?.email && (
           <DataContainer>
             <Label>Email</Label>
-            <Value>{user.email}</Value>
+            <Value>{user?.email}</Value>
           </DataContainer>
         )}
+        <DataContainer>
+          <Label>Decide Staff (role)</Label>
+          <Value>{user?.is_staff ? "Si" : "No"}</Value>
+        </DataContainer>
       </Button>
     </Container>
   );

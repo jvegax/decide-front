@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NavBar = styled.nav`
@@ -41,4 +42,12 @@ export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+export const CreateVotingLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  padding: 9px;
+  border-radius: 5px;
+  background-color: #eee;
 `;

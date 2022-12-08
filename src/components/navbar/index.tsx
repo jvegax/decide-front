@@ -1,35 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, LinkContainer, NavBar as Nav } from "./styles";
+import {
+  Button,
+  CreateVotingLink,
+  LinkContainer,
+  NavBar as Nav,
+} from "./styles";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/decide-logo.jpg";
 import useDecide from "../../hooks/useDecide";
-
-function languageButtons() {
-  const { i18n } = useTranslation();
-  return (
-    <select
-      onChange={(event) => i18n.changeLanguage(event.target.value)}
-    >
-      <option value="en_US" hidden={i18n.language == "en_US"}>🇺🇸</option>
-      <option value="es_ES" hidden={i18n.language == "es_ES"}>🇪🇸</option>
-      <option value="de_DE" hidden={i18n.language == "de_DE"}>🇩🇪</option>
-      <option value="se_SV" hidden={i18n.language == "se_SV"}>🇸🇪</option>
-    </select>
-  );
-}
+import LangMenu from "./LangMenu";
 
 const NavBar = () => {
   const { t } = useTranslation();
-  const { token } = useDecide();
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { token, user } = useDecide();
   return (
     <Nav>
       <Link to="/">
         <img src={logo} alt="logo" width={190} />
       </Link>
       <LinkContainer>
-        {languageButtons()}
+        <LangMenu />
         <Link to="/">{t("voting")}</Link>
         {!token && (
           <>
@@ -42,6 +33,11 @@ const NavBar = () => {
             <Link to="logout/">{t("logout")}</Link>
             <Link to="profile/">{user?.username}</Link>
           </>
+        )}
+        {token && user?.is_staff && (
+          <CreateVotingLink to="votacion/create">
+            Crear votación
+          </CreateVotingLink>
         )}
       </LinkContainer>
     </Nav>

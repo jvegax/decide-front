@@ -30,11 +30,14 @@ const normalizeUser = (user: any, token: string | null): User => {
 
 const DecideProvider = (props: DecideProviderProps) => {
   const { children } = props;
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : null
+  );
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token") || null
   );
-  const [loadingToken, setLoadingToken] = useState<boolean>(false);
 
   const handleLogin = (username: string, password: string) => {
     const API_URL = "http://127.0.0.1:8000/authentication/login/";
@@ -46,18 +49,14 @@ const DecideProvider = (props: DecideProviderProps) => {
 
     // 1 - Get user auth token to verify login
     const getToken = async () => {
-      console.log("✅ getToken");
       try {
-        setLoadingToken(true);
         const response = await fetch(API_URL, options);
         if (response.ok) {
           const data = await response.json();
           setToken(data.token);
           localStorage.setItem("token", data.token);
-          console.log("🚀 Token ready: ", data.token);
           return data.token;
         }
-        setLoadingToken(false);
       } catch (error) {
         console.log({ error });
       }
@@ -65,7 +64,6 @@ const DecideProvider = (props: DecideProviderProps) => {
 
     // 2 - Get user data
     const getUser = async () => {
-      console.log("✅ getUser");
       const token = await getToken();
       const data = {
         token: token,
@@ -82,7 +80,7 @@ const DecideProvider = (props: DecideProviderProps) => {
           const data = await response.json();
           const user = normalizeUser(data, token);
           setUser(user);
-          console.log("🚀 User ready: ", user);
+          localStorage.setItem("user", JSON.stringify(user));
         }
       } catch (error) {
         console.log({ error });
@@ -95,6 +93,8 @@ const DecideProvider = (props: DecideProviderProps) => {
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    
     const API_URL = "http://127.0.0.1:8000/authentication/logout/";
     const options = {
       method: "POST",
@@ -117,6 +117,7 @@ const DecideProvider = (props: DecideProviderProps) => {
 
   const contextValue = {
     user,
+    token,
     handleLogin,
     handleLogout,
   };
