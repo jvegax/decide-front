@@ -22,6 +22,7 @@ export const LinkContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   gap: 1em;

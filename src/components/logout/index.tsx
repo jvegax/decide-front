@@ -1,16 +1,17 @@
 import { Title, Container, LogButton } from "./styles";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import useDecide from "../../hooks/useDecide";
 
 const Logout = () => {
-
+  const { setAuthToken } = useDecide();
   const navigate = useNavigate();
 
   const handleAuth = async (e: any) => {
     e.preventDefault();
 
-    const credentials = { token : localStorage.getItem("authtoken") };
+    const credentials = { token: localStorage.getItem("authtoken") };
     const reqOptions = {
-      method: 'POST',
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
     };
@@ -19,6 +20,7 @@ const Logout = () => {
     const logout = async () => {
       const res = await fetch(API_URL, reqOptions);
       localStorage.removeItem("authtoken");
+      setAuthToken("");
       console.log(res);
       navigate("/");
     };
@@ -28,7 +30,10 @@ const Logout = () => {
   return (
     <Container>
       <Title>¿Seguro que quieres salir de decide?</Title>
-      <LogButton onClick={handleAuth} className="btn-register"> Salir </LogButton>
+      <LogButton onClick={handleAuth} className="btn-register">
+        {" "}
+        Salir{" "}
+      </LogButton>
     </Container>
   );
 };
