@@ -29,7 +29,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const { setAuthToken, authToken } = useDecide();
+  const { handleLogin } = useDecide();
 
   const handleAuth = async (e: any) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ const Login = () => {
         if (response.ok) {
           const data = await response.json();
           console.log(data.token);
-          setAuthToken(data.token);
+          handleLogin(username, data.token);
           localStorage.setItem("authtoken", data.token);
           navigate("/");
           setMessage(user_created_successfully_tras);

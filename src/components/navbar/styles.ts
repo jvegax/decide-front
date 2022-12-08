@@ -8,7 +8,6 @@ export const NavBar = styled.nav`
   padding: 0 20px;
   height: 80px;
   border-bottom: 1px solid #eee;
-  background-color: #f5f5f5;
 `;
 
 export const Title = styled.h1`

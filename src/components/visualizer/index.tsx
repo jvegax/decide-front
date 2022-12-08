@@ -71,7 +71,7 @@ const VotingVisualizer: FC = () => {
         <>
         <Container>
            <Title>¡Esta votacion no ha terminado! </Title>
-           <img src={myGif} alt="my-gif" />
+           <img src={myGif} alt="my-gif" width={220} />
            <Title>Vuelve mas tarde </Title>
         </Container>
         </>
