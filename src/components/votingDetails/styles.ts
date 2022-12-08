@@ -55,11 +55,11 @@ export const Button = styled.button`
   max-width: 600px;
   height: 65px;
   border-radius: 9px;
-  background-color: #5f8de8;
   padding: 20px;
   margin-top: 8px;
   border: none;
   cursor: pointer;
+  background-color: #5f8de8;
   &:hover {
     background-color: #4677d8;
   }

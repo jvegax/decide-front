@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Title = styled.h1`
-    font-size: 28px;
+export const Title = styled.p`
+    font-size: 24px;
     color: #fff;
     font-weight: 600;
     line-height: 1.2;

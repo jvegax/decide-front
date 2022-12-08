@@ -5,6 +5,7 @@ export const NavBar = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   padding: 0 20px;
   height: 80px;
@@ -50,4 +51,15 @@ export const CreateVotingLink = styled(Link)`
   padding: 9px;
   border-radius: 5px;
   background-color: #eee;
+`;
+
+export const SelectLang = styled.select`
+  padding: 0.5em;
+  margin: 0.2em;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background-color: #e2e2e2;
 `;
