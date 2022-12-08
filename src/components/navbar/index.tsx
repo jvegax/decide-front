@@ -52,7 +52,12 @@ const NavBar = () => {
             <Link to="signup/">{t("register")}</Link>
           </>
         )}
-        {authToken && <Link to="logout/">{t("logout")}</Link>}
+        {authToken && (
+          <>
+            <Link to="logout/">{t("logout")}</Link>
+            <Link to="profile/">{t("profile")}</Link>
+          </>
+        )}
       </LinkContainer>
     </Nav>
   );

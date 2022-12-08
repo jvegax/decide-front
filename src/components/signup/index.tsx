@@ -11,7 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [message, setMessage] = useState("");
-  const [authtoken, setAuthToken] = useState("");
+  const [authToken, setAuthToken] = useState("");
 
   const { t } = useTranslation();
   const user_created_successfully_tras = t('user_created_successfully').toString();

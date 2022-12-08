@@ -41,7 +41,7 @@ const Login = () => {
       body: JSON.stringify(credentials),
     };
 
-    const API_URL = "http://127.0.0.1:8000/authentication/login/";
+    const API_URL = "http://localhost:8000/authentication/login/";
     const authenticate = async () => {
       try {
         const response = await fetch(API_URL, reqOptions);
@@ -49,8 +49,8 @@ const Login = () => {
         if (response.ok) {
           const data = await response.json();
           console.log(data.token);
+          localStorage.setItem("authToken", data.token);
           handleLogin(username, data.token);
-          localStorage.setItem("authtoken", data.token);
           navigate("/");
           setMessage(user_created_successfully_tras);
         } else {

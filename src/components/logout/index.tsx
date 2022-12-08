@@ -9,7 +9,7 @@ const Logout = () => {
   const handleAuth = async (e: any) => {
     e.preventDefault();
 
-    const credentials = { token: localStorage.getItem("authtoken") };
+    const credentials = { token: localStorage.getItem("authToken") };
     const reqOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

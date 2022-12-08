@@ -1,9 +1,8 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import DecideContext from './DecideContext';
 
 interface DecideProviderProps {
   children: ReactNode;
-  // Add any props for the provider here
 }
 
 const DecideProvider = (props: DecideProviderProps) => {
