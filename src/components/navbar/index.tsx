@@ -21,7 +21,7 @@ function languageButtons() {
 
 const NavBar = () => {
   const { t } = useTranslation();
-  const { authToken } = useDecide();
+  const { token } = useDecide();
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   return (
     <Nav>
@@ -31,13 +31,13 @@ const NavBar = () => {
       <LinkContainer>
         {languageButtons()}
         <Link to="/">{t("voting")}</Link>
-        {!authToken && (
+        {!token && (
           <>
             <Link to="signin/">{t("login")}</Link>
             <Link to="signup/">{t("register")}</Link>
           </>
         )}
-        {authToken && (
+        {token && (
           <>
             <Link to="logout/">{t("logout")}</Link>
             <Link to="profile/">{user?.username}</Link>

@@ -1,5 +1,3 @@
-import useDecide from "../../hooks/useDecide";
-import useGetUser from "../../hooks/useGetUser";
 import { Button, Container, DataContainer, Label, Value } from "./styles";
 
 const Profile = () => {
