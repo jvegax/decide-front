@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   width: 100%;
   max-width: 600px;
@@ -12,6 +12,10 @@ export const Button = styled.button`
   padding: 20px;
   margin-top: 8px;
   border: none;
+`;
+
+export const DataContainer = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const Container = styled.div`
@@ -25,10 +29,10 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.p`
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
 `;
 export const Value = styled.p`
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
 `;

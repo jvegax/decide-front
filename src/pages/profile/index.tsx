@@ -1,31 +1,31 @@
 import useDecide from "../../hooks/useDecide";
 import useGetUser from "../../hooks/useGetUser";
-import { Button, Container, Label, Value } from "./styles";
+import { Button, Container, DataContainer, Label, Value } from "./styles";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   return (
     <Container>
-        <h1>Perfil</h1>
+      <h1>Perfil</h1>
       <Button>
         {user.name && (
-          <div>
+          <DataContainer>
             <Label>Name</Label>
             <Value>{user.name}</Value>
-          </div>
+          </DataContainer>
         )}
         {user.username && (
-          <div>
+          <DataContainer>
             <Label>Username</Label>
             <Value>{user.username}</Value>
-          </div>
+          </DataContainer>
         )}
-        {user.name && (
-          <div>
-            <Label>Name</Label>
-            <Value>{user.name}</Value>
-          </div>
+        {user.email && (
+          <DataContainer>
+            <Label>Email</Label>
+            <Value>{user.email}</Value>
+          </DataContainer>
         )}
       </Button>
     </Container>
