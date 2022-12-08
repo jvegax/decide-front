@@ -8,14 +8,26 @@ interface DecideProviderProps {
 
 const DecideProvider = (props: DecideProviderProps) => {
   const { children } = props;
-  const [userName, setUserName] = useState<string>('');
-  const [authToken, setAuthToken] = useState<string>('');
-  // Set the values for the context here
+  const [userName, setUserName] = useState<string>(localStorage.getItem('userName') || '');
+  const [authToken, setAuthToken] = useState<string>(localStorage.getItem('authToken') || '');
+  
+  const handleLogin = (userName: string, authToken: string) => {
+    setUserName(userName);
+    setAuthToken(authToken);
+  };
+
+  const handleLogout = () => {
+    setUserName('');
+    setAuthToken('');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('authToken');
+  };
+
   const contextValue = {
     userName,
-    setUserName,
     authToken,
-    setAuthToken,
+    handleLogin,
+    handleLogout,
   };
 
   return (

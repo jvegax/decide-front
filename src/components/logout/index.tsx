@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useDecide from "../../hooks/useDecide";
 
 const Logout = () => {
-  const { setAuthToken } = useDecide();
+  const { handleLogout } = useDecide();
   const navigate = useNavigate();
 
   const handleAuth = async (e: any) => {
@@ -18,10 +18,8 @@ const Logout = () => {
 
     const API_URL = "http://127.0.0.1:8000/authentication/logout/";
     const logout = async () => {
-      const res = await fetch(API_URL, reqOptions);
-      localStorage.removeItem("authtoken");
-      setAuthToken("");
-      console.log(res);
+      await fetch(API_URL, reqOptions);
+      handleLogout();
       navigate("/");
     };
     logout();

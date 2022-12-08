@@ -42,7 +42,7 @@ const NavBar = () => {
   const { authToken } = useDecide();
   return (
     <Nav>
-      <img src={logo} alt="logo" width={140} />
+      <img src={logo} alt="logo" width={190} />
       <LinkContainer>
         {languageButtons()}
         <Link to="/">{t("voting")}</Link>
