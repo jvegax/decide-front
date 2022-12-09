@@ -1,12 +1,11 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLogic } from "./logic";
 import { useParams } from "react-router-dom";
 import useVotaciones from "../../hooks/useVotaciones";
-import { BackButton, Container, Description, Title } from "./styles";
+import { BackButton, Container, Title, TitleVotacion } from "./styles";
 import myGif from "../../images/pepefrg-4.gif";
 import Chart from "./Chart";
-import { Button } from "../votingCard/styles";
 
 const VotingVisualizer: FC = () => {
   const { t } = useTranslation();
@@ -24,15 +23,17 @@ const VotingVisualizer: FC = () => {
         <>
           <Container>
             <Title>Estos son los resultados de: </Title>
-            <Title>"{votacion?.name}"</Title>
-            <Description>La opción mas votada ha sido ... 🥁 🥁</Description>
+            <TitleVotacion>"{votacion?.name}"</TitleVotacion>
             <Chart chartData={chartData} />
+            <BackButton onClick={handleGoBack}>Volver</BackButton>
           </Container>
         </>
       ) : (
         <>
           <Container>
-            <Title>Aún no ha terminado la votación, por favor vuelve más tarde </Title>
+            <Title>
+              Aún no ha terminado la votación, por favor vuelve más tarde{" "}
+            </Title>
             <img src={myGif} alt="my-gif" width={220} />
             <BackButton onClick={handleGoBack}>Volver</BackButton>
           </Container>
@@ -42,4 +43,4 @@ const VotingVisualizer: FC = () => {
   );
 };
 
-export default VotingVisualizer;
+export default memo(VotingVisualizer);

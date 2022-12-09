@@ -1,7 +1,8 @@
-import React from "react";
+import { FC, memo } from "react";
 import ReactApexChart from "react-apexcharts";
+import { ChartProps } from "./types";
 
-const Chart = ({ chartData }: any) => {
+const Chart: FC<ChartProps> = ({ chartData }) => {
   return (
     <ReactApexChart
       options={{
@@ -37,9 +38,9 @@ const Chart = ({ chartData }: any) => {
       }}
       series={chartData.votes}
       type="pie"
-      width={500}
+      width={400}
     />
   );
 };
 
-export default Chart;
+export default memo(Chart);

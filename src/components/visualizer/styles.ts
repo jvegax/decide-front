@@ -18,6 +18,11 @@ export const Title = styled.h1`
   line-height: 1.2em;
 `;
 
+export const TitleVotacion = styled(Title)`
+  font-size: 1.4em;
+  text-decoration: underline;
+`;
+
 export const BackButton = styled.button`
   display: flex;
   align-items: center;
@@ -37,9 +42,6 @@ export const BackButton = styled.button`
     border: 1px solid #000;
   }
 `;
-
-
-export const Description = styled.p``;
 
 export const OptionContainer = styled.div`
   display: flex;
