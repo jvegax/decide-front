@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Status } from "../votingCard/styles";
 
 export const Container = styled.div`
   display: flex;
