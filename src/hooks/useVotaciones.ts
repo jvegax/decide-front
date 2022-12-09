@@ -40,7 +40,7 @@ const useVotaciones = () => {
     });
     setVotaciones(votaciones);
     setLoading(false);
-    return votaciones;
+    return votaciones.reverse();
   }, []);
 
   useEffect(() => {

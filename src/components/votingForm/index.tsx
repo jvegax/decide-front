@@ -1,6 +1,7 @@
-import { memo, useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import useDecide from "../../hooks/useDecide";
+import { memo, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth, useDecide } from "../../hooks";
+
 import {
   Form,
   Input,
@@ -21,9 +22,51 @@ const VotingForm = () => {
   const [question, setQuestion] = useState<VotingProps["question"]>("");
   const [options, setOptions] = useState<VotingProps["question_opt"]>([]);
   const [voters, setVoters] = useState<Census["voters"]>([]);
+  const [firstOption, setFirstOption] = useState<string>("");
+  const [secondOption, setSecondOption] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
+  const handleCreateVoting = async () => {
+    if (!!name && !!description && !!question && !!firstOption && !!secondOption) {
+      const createVoting = async () => {
+        setLoading(true);
+        const voting = {
+          name,
+          desc: description,
+          question,
+          question_opt:options,
+          token: user?.auth_token,
+        };
+        try {
+          const response = await fetch("http://localhost:8000/voting/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(voting),
+          });
+          const data = await response.json();
+          console.log({ data });
+          setLoading(false);
+        } catch (error) {
+          console.log({ error });
+          setLoading(false);
+        }
+      };
+      const res = await createVoting();
+      navigate("/");
+      console.log({ res });
+    }
+  };
+
+  useEffect(() => {
+    setOptions([firstOption, secondOption]);
+  }, [firstOption, secondOption]);
   return (
     <>
+    {loading && <h1>Loading...</h1>}
       {authenticated && user?.is_staff ? (
         <>
           <MainTitle>Nueva votación</MainTitle>
@@ -32,20 +75,45 @@ const VotingForm = () => {
               <Title>Datos de la votación</Title>
               <LabelContainer>
                 Titulo de la votación
-                <Input name="titulo" type="text" />
+                <Input
+                  name="titulo"
+                  type="text"
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
               </LabelContainer>
               <LabelContainer>
                 Descripción de la votación
-                <Input name="descripcion" type="text" />
+                <Input
+                  name="descripcion"
+                  type="text"
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
               </LabelContainer>
               <LabelContainer>
                 Pregunta
-                <Input name="pregunta" type="text" />
+                <Input
+                  name="pregunta"
+                  type="text"
+                  onChange={(e) => setQuestion(e.target.value)}
+                  required
+                />
               </LabelContainer>
               <LabelContainer>
                 Opciones
-                <Input name="opciones" type="text" />
-                <Input name="opciones" type="text" />
+                <Input
+                  name="opciones"
+                  type="text"
+                  onChange={(e) => setFirstOption(e.target.value)}
+                  required
+                />
+                <Input
+                  name="opciones"
+                  type="text"
+                  onChange={(e) => setSecondOption(e.target.value)}
+                  required
+                />
               </LabelContainer>
             </VotingContainer>
             <VotingContainer>
@@ -53,7 +121,9 @@ const VotingForm = () => {
               <Paragraph>
                 Aquí debes seleccionar quien tiene permitido realizar votaciones
               </Paragraph>
-          <SubmitButton>Crear votación</SubmitButton>
+              <SubmitButton onClick={handleCreateVoting}>
+                Crear votación
+              </SubmitButton>
             </VotingContainer>
           </Form>
         </>
