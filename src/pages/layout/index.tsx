@@ -4,12 +4,14 @@ import { Container, Content } from "./styles";
 
 const Layout = () => {
   return (
-    <Container>
+    <>
       <NavBar />
-      <Content>
-        <Outlet />
-      </Content>
-    </Container>
+      <Container>
+        <Content>
+          <Outlet />
+        </Content>
+      </Container>
+    </>
   );
 };
 

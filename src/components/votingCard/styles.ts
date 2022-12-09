@@ -9,9 +9,9 @@ export const Button = styled.button`
   text-align: left;
   flex: 0.8;
   gap: 1em;
+  height: 65px;
   width: 100%;
   max-width: 600px;
-  height: 65px;
   flex-direction: row;
   border-radius: 9px;
   background-color: #36393d;

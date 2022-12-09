@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from "react";
+import { FC, memo, ReactNode, useMemo, useRef, useState } from "react";
 import {
   Container,
   Description,
@@ -14,9 +14,11 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { getVotingStatus } from "../../utils/votingStatus";
 import { Status } from "../votingCard/styles";
+import Confetti from "react-confetti";
 
 const VotingDetails: FC<Props> = ({ votacion }) => {
   const { t } = useTranslation();
+  const [displayConfetti, setDisplayConfetti] = useState(false);
 
   const navigate = useNavigate();
   const handleResults = async (e: any) => {
@@ -24,17 +26,24 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
     navigate(`/visualizer/${votacion?.id}`);
   };
 
-  const disabled = () =>
-    useMemo(() => {
-      if (votacion !== null) {
-        let status = getVotingStatus(votacion);
-        if (status === "Finished" || status === "Pending") {
-          return true;
-        } else {
-          return false;
-        }
+  const onSubmitVote = () => {
+    setDisplayConfetti(true);
+    setTimeout(() => {
+      setDisplayConfetti(false);
+      navigate("/");
+    }, 5000);
+  };
+
+  const disabled = useMemo(() => {
+    if (votacion !== null) {
+      let status = getVotingStatus(votacion);
+      if (status === "Finished" || status === "Pending") {
+        return true;
+      } else {
+        return false;
       }
-    }, [votacion]);
+    }
+  }, [votacion]);
 
   const handleStatus = useMemo(() => {
     return votacion !== null ? getVotingStatus(votacion) : "Pending";
@@ -42,19 +51,35 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
 
   return (
     <>
-      <Container>
-        <Status status={handleStatus}>{handleStatus}</Status>
-        <Title>{votacion?.name}</Title>
-        <Description>{votacion?.desc}</Description>
-        <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
-        <OptionContainer>
-          {votacion?.question?.options?.map((option) => (
-            <Option key={option.number}>{option.option}</Option>
-          ))}
-        </OptionContainer>
-      </Container>
-      <Button disabled={disabled()}>{t("submit_vote")}</Button>
-      <ButtonResult onClick={handleResults}>{t("results")}</ButtonResult>
+      {displayConfetti && (
+        <>
+          <Title>Gracias por votar! Te notificaremos cuando la votación haya terminado</Title>
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            numberOfPieces={250}
+          />
+        </>
+      )}
+      {!displayConfetti && (
+        <>
+          <Container>
+            <Status status={handleStatus}>{handleStatus}</Status>
+            <Title>{votacion?.name}</Title>
+            <Description>{votacion?.desc}</Description>
+            <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
+            <OptionContainer>
+              {votacion?.question?.options?.map((option) => (
+                <Option key={option.number}>{option.option}</Option>
+              ))}
+            </OptionContainer>
+          </Container>
+          <Button disabled={disabled} onClick={onSubmitVote}>
+            {t("submit_vote")}
+          </Button>
+          <ButtonResult onClick={handleResults}>{t("results")}</ButtonResult>
+        </>
+      )}
     </>
   );
 };

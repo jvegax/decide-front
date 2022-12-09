@@ -1,14 +1,5 @@
 import { VotingList } from "../../components";
 
-const Home = () => {
-  const handleCreateVoting = () => {
-    return <h1>hello</h1>;
-  };
-  return (
-    <>
-      <VotingList />
-    </>
-  );
-};
+const Home = () => <VotingList />;
 
 export default Home;

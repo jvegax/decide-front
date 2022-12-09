@@ -32,7 +32,7 @@ const VotingVisualizer: FC = () => {
       ) : (
         <>
           <Container>
-            <Title>Vuelve mas tarde </Title>
+            <Title>Aún no ha terminado la votación, por favor vuelve más tarde </Title>
             <img src={myGif} alt="my-gif" width={220} />
             <BackButton onClick={handleGoBack}>Volver</BackButton>
           </Container>
