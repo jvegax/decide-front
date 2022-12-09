@@ -11,7 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [message, setMessage] = useState("");
-  const [authtoken, setAuthToken] = useState("");
+  const [token, settoken] = useState("");
 
   const { t } = useTranslation();
   const user_created_successfully_tras = t('user_created_successfully').toString();
@@ -37,7 +37,7 @@ const Register = () => {
         if (response.ok) {
           const data = await response.json();
           console.log(data.token);
-          setAuthToken(data.token);
+          settoken(data.token);
           navigate("/");
           setMessage(user_created_successfully_tras);
         } else if (password!=password2){

@@ -17,5 +17,5 @@ export const Content = styled.div`
     height: 100vh;
 
     padding: 20px;
-    padding-top: 50px;
+    margin-top: 50px;
 `;

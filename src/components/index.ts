@@ -5,3 +5,4 @@ export { default as Login } from "./signin";
 export { default as Register } from "./signup";
 export { default as Logout } from "./logout";
 export { default as Visualizer } from "./visualizer";
+export { default as VotingForm } from "./votingForm";

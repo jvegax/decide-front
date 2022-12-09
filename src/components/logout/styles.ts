@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Title = styled.h1`
-    font-size: 28px;
+export const Title = styled.p`
+    font-size: 24px;
     color: #fff;
-    font-weight: 800;
-    margin: 3.33%;
+    font-weight: 600;
+    line-height: 1.2;
 `;
 
 export const Container = styled.div`
@@ -17,8 +17,9 @@ export const Container = styled.div`
     background-color: #36393d;
     border-color: black;
     width: 100%;
-    max-width: 600px;
-    height: auto;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
 `;
 
 export const ErrorContainer = styled.div`
@@ -26,9 +27,7 @@ export const ErrorContainer = styled.div`
     border-radius: 8px;
     background-color: #ff7373;
     border-color: black;
-    width: 80%;
-    height: auto;
-    margin: auto;
+    width: 100%;
 `;
 
 export const LogButton = styled.button`
@@ -36,15 +35,12 @@ export const LogButton = styled.button`
     color: white;
     border: none;
     cursor: pointer;
-    text-align: center;
-    opacity: 0.9;
     border-radius: 8px;
-    width: 60%;
-    max-width: 600px;
-    height: max-content;
+    width: 100%;
+    max-width: 200px;
     font-size: 1.2em;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-top: 16px;
     padding: 15px;
     cursor: pointer;
     &:hover {

@@ -7,9 +7,9 @@ export type Voting = {
     desc: string;
     options: Option[];
   };
-  start_date: any;
-  end_date: any;
-  pub_key: any;
+  start_date: string | null;
+  end_date: string | null;
+  pub_key: string | null;
   auths: [
     {
       name: string;

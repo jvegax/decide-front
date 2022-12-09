@@ -1,15 +1,18 @@
-import { createContext } from 'react';
+import { createContext } from "react";
+import { User } from "../models/User";
 
 interface DecideContextProps {
-  // Add any properties that you want to include in the context here
-  authToken: string;
-  setAuthToken: (token: string) => void;
+  user: User | null;
+  token: string | null;
+  handleLogin: (username: string, password: string) => void;
+  handleLogout: () => void;
 }
 
 const DecideContext = createContext<DecideContextProps>({
-  // Set default values for any properties here
-  authToken: '',
-  setAuthToken: () => {},
+  user: null,
+  token: null,
+  handleLogin: () => {},
+  handleLogout: () => {},
 });
 
 export default DecideContext;

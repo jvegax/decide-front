@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-    font-size: 28px;
+    font-size: 32px;
     color: #fff;
     font-weight: 800;
     margin: 3.33%;
@@ -17,6 +17,7 @@ export const Container = styled.div`
     width: 100%;
     max-width: 600px;
     height: auto;
+    padding: 20px;
 `;
 
 export const ErrorContainer = styled.div`
@@ -36,15 +37,18 @@ export const Input = styled.input`
     border-radius: 8px;
     background: #f1f1f1;
     color: #000000;
-    width: 60%;
+    width: 100%;
+    max-width: 250px;
     outline: none;
     border: none;
     margin-bottom: 20px;
+    font-size: 1em;
 `;
 
 export const Label = styled.label`
     color: #fff;
-    font-size: medium;
+    font-size: 1.2em;
+    font-weight: 600;
 `;
 
 export const LogButton = styled.button`
@@ -55,8 +59,8 @@ export const LogButton = styled.button`
     text-align: center;
     opacity: 0.9;
     border-radius: 8px;
-    width: 60%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 250px;
     height: max-content;
     font-size: 1.2em;
     font-weight: 600;

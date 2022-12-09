@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useParams } from "react-router-dom";
 import VotingDetails from "../../components/votingDetails";
 import { Voting } from "../../components/votingList/types";
@@ -11,4 +12,4 @@ const Details = () => {
   return <VotingDetails votacion={votacion} />;
 };
 
-export default Details;
+export default memo(Details);

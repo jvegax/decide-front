@@ -1,11 +1,5 @@
 import { VotingList } from "../../components";
 
-const Home = () => {
-  return (
-    <>
-      <VotingList />
-    </>
-  );
-};
+const Home = () => <VotingList />;
 
 export default Home;

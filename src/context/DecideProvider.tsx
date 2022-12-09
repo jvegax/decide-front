@@ -1,21 +1,104 @@
-import React, { ReactNode, useState } from 'react';
-import DecideContext from './DecideContext';
+import { ReactNode, useState } from "react";
+import { normalizeUser, User } from "../models/User";
+import DecideContext from "./DecideContext";
 
 interface DecideProviderProps {
   children: ReactNode;
-  // Add any props for the provider here
 }
 
 const DecideProvider = (props: DecideProviderProps) => {
   const { children } = props;
-  const [userName, setUserName] = useState<string>('');
-  const [authToken, setAuthToken] = useState<string>('');
-  // Set the values for the context here
+  const [user, setUser] = useState<User | null>(
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : null
+  );
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("token") || null
+  );
+
+  const handleLogin = (username: string, password: string) => {
+    const API_URL = "http://127.0.0.1:8000/authentication/login/";
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    };
+
+    // 1 - Get user auth token to verify login
+    const getToken = async () => {
+      try {
+        const response = await fetch(API_URL, options);
+        if (response.ok) {
+          const data = await response.json();
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
+          return data.token;
+        }
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+
+    // 2 - Get user data
+    const getUser = async () => {
+      const token = await getToken();
+      const data = {
+        token: token,
+      };
+      const API_URL = "http://127.0.0.1:8000/authentication/getuser/";
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      };
+      try {
+        const response = await fetch(API_URL, options);
+        if (response.ok) {
+          const data = await response.json();
+          console.log({data});
+          const user = normalizeUser(data, token);
+          setUser(user);
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    getUser();
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    const API_URL = "http://127.0.0.1:8000/authentication/logout/";
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    };
+    const logout = async () => {
+      try {
+        const response = await fetch(API_URL, options);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+        }
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    logout();
+  };
+
   const contextValue = {
-    userName,
-    setUserName,
-    authToken,
-    setAuthToken,
+    user,
+    token,
+    handleLogin,
+    handleLogout,
   };
 
   return (
