@@ -56,6 +56,7 @@ const DecideProvider = (props: DecideProviderProps) => {
         const response = await fetch(API_URL, options);
         if (response.ok) {
           const data = await response.json();
+          console.log({data});
           const user = normalizeUser(data, token);
           setUser(user);
           localStorage.setItem("user", JSON.stringify(user));

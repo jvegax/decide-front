@@ -11,7 +11,7 @@ import {
   Title,
   VotingContainer,
 } from "./styles";
-import { Census, Option, VotingProps } from "./types";
+import { Census, VotingProps } from "./types";
 
 const VotingForm = () => {
   const { authenticated } = useAuth();
@@ -19,7 +19,7 @@ const VotingForm = () => {
   const [name, setName] = useState<VotingProps["name"]>("");
   const [description, setDescription] = useState<VotingProps["desc"]>("");
   const [question, setQuestion] = useState<VotingProps["question"]>("");
-  const [options, setOptions] = useState<Option[]>([]);
+  const [options, setOptions] = useState<VotingProps["question_opt"]>([]);
   const [voters, setVoters] = useState<Census["voters"]>([]);
 
   return (
@@ -53,9 +53,9 @@ const VotingForm = () => {
               <Paragraph>
                 Aquí debes seleccionar quien tiene permitido realizar votaciones
               </Paragraph>
+          <SubmitButton>Crear votación</SubmitButton>
             </VotingContainer>
           </Form>
-          <SubmitButton>Crear votación</SubmitButton>
         </>
       ) : (
         <h1>❌ Ups...</h1>

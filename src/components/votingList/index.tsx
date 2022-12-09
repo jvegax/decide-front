@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import useVotaciones from "../../hooks/useVotaciones";
 import VotingCard from "../votingCard";
 import { ListContainer } from "./styles";

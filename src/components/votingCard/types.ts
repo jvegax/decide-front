@@ -3,6 +3,12 @@ export type Props = {
   key: number;
 };
 
+export type StatusProps = {
+  status: StatusType;
+};
+
+export type StatusType = "Started" | "Finished" | "Pending";
+
 export type VotingResults = {
   votes: number;
   number: number;
