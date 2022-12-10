@@ -14,6 +14,8 @@ export const Button = styled.button`
   border: none;
 `;
 
+export const TelegramButton = styled.button``;
+
 export const DataContainer = styled.div`
   margin-bottom: 20px;
 `;

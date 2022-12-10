@@ -1,12 +1,28 @@
+import TelegramIcon from "../../components/icons/TelegramIcon";
 import useDecide from "../../hooks/useDecide";
-import { Button, Container, DataContainer, Label, Value } from "./styles";
+import {
+  Button,
+  Container,
+  DataContainer,
+  Label,
+  TelegramButton,
+  Value,
+} from "./styles";
 
 const Profile = () => {
   const { user } = useDecide();
 
+  const handleTelegramChannel = () => {
+    const telegramUrl = "https://t.me/+seqiuW01_aVmOWNk";
+    window.open(telegramUrl, "_blank");
+  };
+
   return (
     <Container>
       <h1>Perfil</h1>
+      <TelegramButton onClick={handleTelegramChannel}>
+        <TelegramIcon />
+      </TelegramButton>
       <Button>
         {user?.name && (
           <DataContainer>

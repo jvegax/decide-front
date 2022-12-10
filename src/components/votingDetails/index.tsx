@@ -16,10 +16,9 @@ import { getVotingStatus } from "../../utils/votingStatus";
 import { Status } from "../votingCard/styles";
 import Confetti from "react-confetti";
 
-const VotingDetails: FC<Props> = ({ votacion }) => {
+const VotingDetails: FC<Props> = ({ votacion  }) => {
   const { t } = useTranslation();
   const [displayConfetti, setDisplayConfetti] = useState(false);
-
   const navigate = useNavigate();
   const handleResults = async (e: any) => {
     e.preventDefault();
@@ -28,6 +27,7 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
 
   const onSubmitVote = () => {
     setDisplayConfetti(true);
+    // TODO: Send vote to backend
     setTimeout(() => {
       setDisplayConfetti(false);
       navigate("/");
