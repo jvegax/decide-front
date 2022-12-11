@@ -8,6 +8,7 @@ import {
   QuestionTitle,
   Button,
   ButtonResult,
+  ButtonStart,
 } from "./styles";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
@@ -15,14 +16,38 @@ import { useNavigate } from "react-router-dom";
 import { getVotingStatus } from "../../utils/votingStatus";
 import { Status } from "../votingCard/styles";
 import Confetti from "react-confetti";
+import useDecide from "../../hooks/useDecide";
+import useAuth from "../../hooks/useAuth";
 
 const VotingDetails: FC<Props> = ({ votacion  }) => {
   const { t } = useTranslation();
   const [displayConfetti, setDisplayConfetti] = useState(false);
   const navigate = useNavigate();
+  const { user } = useDecide();
+  const { authenticated } = useAuth();
+
   const handleResults = async (e: any) => {
     e.preventDefault();
     navigate(`/visualizer/${votacion?.id}`);
+  };
+
+  const startCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Pending" : false;
+
+
+  const handleStart = async (e: any) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const response= await fetch(`http://localhost:8000/voting/${votacion?.id}/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "start",
+        token: token,
+      })}).then((response) => navigate(`/`));
+
+    
   };
 
   const onSubmitVote = () => {
@@ -78,6 +103,11 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
             {t("submit_vote")}
           </Button>
           <ButtonResult onClick={handleResults}>{t("results")}</ButtonResult>
+
+          {startCondition &&(
+            <ButtonStart onClick={handleStart}>{t("start_voting")}</ButtonStart>)
+
+          }
         </>
       )}
     </>
