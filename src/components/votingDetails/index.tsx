@@ -10,7 +10,7 @@ import {
   ButtonResult,
   ButtonStart,
   ButtonStop,
-  ButtonTally
+  ButtonTally,
 } from "./styles";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
@@ -21,12 +21,12 @@ import Confetti from "react-confetti";
 import useDecide from "../../hooks/useDecide";
 import useAuth from "../../hooks/useAuth";
 
-const VotingDetails: FC<Props> = ({ votacion  }) => {
+const VotingDetails: FC<Props> = ({ votacion }) => {
   const { t } = useTranslation();
   const [displayConfetti, setDisplayConfetti] = useState(false);
   const navigate = useNavigate();
   const { user } = useDecide();
-  const[optionChosen, setOptionChosen] = useState<any>()
+  const [optionChosen, setOptionChosen] = useState<number | null>(null);
   const { authenticated } = useAuth();
 
   const handleResults = async (e: any) => {
@@ -34,69 +34,89 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
     navigate(`/visualizer/${votacion?.id}`);
   };
 
-  const startCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Pending" : false;
-  const stopCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Started" : false;
-  const tallyCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Finished" : false;
+  const startCondition =
+    votacion !== null
+      ? authenticated &&
+        user?.is_staff &&
+        getVotingStatus(votacion) === "Pending"
+      : false;
+  const stopCondition =
+    votacion !== null
+      ? authenticated &&
+        user?.is_staff &&
+        getVotingStatus(votacion) === "Started"
+      : false;
+  const tallyCondition =
+    votacion !== null
+      ? authenticated &&
+        user?.is_staff &&
+        getVotingStatus(votacion) === "Finished"
+      : false;
 
   const handleStart = async (e: any) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const response= await fetch(`http://localhost:8000/voting/${votacion?.id}/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        action: "start",
-        token: token,
-      })}).then((response) => navigate(`/`));
-
-    
+    const response = await fetch(
+      `http://localhost:8000/voting/${votacion?.id}/`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "start",
+          token: token,
+        }),
+      }
+    ).then((response) => navigate(`/`));
   };
 
   const handleStop = async (e: any) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const response= await fetch(`http://localhost:8000/voting/${votacion?.id}/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        action: "stop",
-        token: token,
-      })}).then((response) => navigate(`/`));
-
-
+    const response = await fetch(
+      `http://localhost:8000/voting/${votacion?.id}/`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "stop",
+          token: token,
+        }),
+      }
+    ).then((response) => navigate(`/`));
   };
 
-
-  const handleTally= async (e: any) => {
+  const handleTally = async (e: any) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const response= await fetch(`http://localhost:8000/voting/${votacion?.id}/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        action: "tally",
-        token: token,
-      })}).then((response) => navigate(`/visualizer/${votacion?.id}`)
-      );
+    const response = await fetch(
+      `http://localhost:8000/voting/${votacion?.id}/`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "tally",
+          token: token,
+        }),
+      }
+    ).then((response) => navigate(`/visualizer/${votacion?.id}`));
   };
 
   const handleOptionChosen = (option: any) => {
     console.log(option);
-    setOptionChosen(option)
+    setOptionChosen(option);
+  };
 
-  }
-
-  const onSubmitVote = async (e:any) => {
+  const onSubmitVote = async (e: any) => {
     setDisplayConfetti(true);
     //Send vote to backend OJO: esto corresponde al issue de registrar voto
     const token = localStorage.getItem("token");
-    const response= await fetch(`http://localhost:8000/store/`, {
+    const response = await fetch(`http://localhost:8000/store/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -106,8 +126,8 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
         voter_id: user?.id,
         opt_number: optionChosen,
         token: token,
-      })}).then((response) => navigate(`/visualizer/${votacion?.id}`)
-      );
+      }),
+    }).then((response) => navigate(`/visualizer/${votacion?.id}`));
 
     setTimeout(() => {
       setDisplayConfetti(false);
@@ -134,7 +154,10 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
     <>
       {displayConfetti && (
         <>
-          <Title>Gracias por votar! Te notificaremos cuando la votación haya terminado</Title>
+          <Title>
+            Gracias por votar! Te notificaremos cuando la votación haya
+            terminado
+          </Title>
           <Confetti
             width={window.innerWidth}
             height={window.innerHeight}
@@ -151,8 +174,14 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
             <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
             <OptionContainer>
               {votacion?.question?.options?.map((option) => (
-                <Option key={option.number} onClick={() => handleOptionChosen(option.number)}>{option.option}</Option>
-                ))}
+                <Option
+                  chosen={option.number === optionChosen}
+                  key={option.number}
+                  onClick={() => handleOptionChosen(option.number)}
+                >
+                  {option.option}
+                </Option>
+              ))}
             </OptionContainer>
           </Container>
           <Button disabled={disabled} onClick={onSubmitVote}>
@@ -160,20 +189,17 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
           </Button>
           <ButtonResult onClick={handleResults}>{t("results")}</ButtonResult>
 
-          {startCondition &&(
-            <ButtonStart onClick={handleStart}>{t("start_voting")}</ButtonStart>)
+          {startCondition && (
+            <ButtonStart onClick={handleStart}>{t("start_voting")}</ButtonStart>
+          )}
 
-          }
+          {stopCondition && (
+            <ButtonStop onClick={handleStop}>{t("stop_voting")}</ButtonStop>
+          )}
 
-          {stopCondition &&(
-            <ButtonStop onClick={handleStop}>{t("stop_voting")}</ButtonStop>)
-
-          }
-
-          {tallyCondition &&(
-            <ButtonTally onClick={handleTally}>{t("tally_voting")}</ButtonTally>)
-
-          }
+          {tallyCondition && (
+            <ButtonTally onClick={handleTally}>{t("tally_voting")}</ButtonTally>
+          )}
         </>
       )}
     </>

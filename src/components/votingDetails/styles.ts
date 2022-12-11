@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Status } from "../votingCard/styles";
+import { OptionProps } from "./types";
 
 export const Container = styled.div`
   display: flex;
@@ -37,12 +38,14 @@ export const Option = styled.p`
   justify-content: center;
   padding: 4px;
   border-radius: 9px;
-  background-color: #151618;
+  background-color: ${(props: OptionProps) =>
+    props.chosen ? "#fff" : "#111211"};
+  color: ${(props: OptionProps) => (props.chosen ? "#111211" : "#fff")};
   margin-top: 8px;
   cursor: pointer;
   &:hover {
     background-color: #fff;
-    color: #000;
+    color: #111211;
     border: 1px solid #000;
   }
   width: 100%;
