@@ -26,6 +26,7 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
   const [displayConfetti, setDisplayConfetti] = useState(false);
   const navigate = useNavigate();
   const { user } = useDecide();
+  const[optionChosen, setOptionChosen] = useState<any>()
   const { authenticated } = useAuth();
 
   const handleResults = async (e: any) => {
@@ -85,9 +86,29 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
       );
   };
 
-  const onSubmitVote = () => {
+  const handleOptionChosen = (option: any) => {
+    console.log(option);
+    setOptionChosen(option)
+
+  }
+
+  const onSubmitVote = async (e:any) => {
     setDisplayConfetti(true);
-    // TODO: Send vote to backend
+    //Send vote to backend OJO: esto corresponde al issue de registrar voto
+    const token = localStorage.getItem("token");
+    const response= await fetch(`http://localhost:8000/store/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        voting_id: votacion?.id,
+        voter_id: user?.id,
+        opt_number: optionChosen,
+        token: token,
+      })}).then((response) => navigate(`/visualizer/${votacion?.id}`)
+      );
+
     setTimeout(() => {
       setDisplayConfetti(false);
       navigate("/");
@@ -130,8 +151,8 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
             <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
             <OptionContainer>
               {votacion?.question?.options?.map((option) => (
-                <Option key={option.number}>{option.option}</Option>
-              ))}
+                <Option key={option.number} onClick={() => handleOptionChosen(option.number)}>{option.option}</Option>
+                ))}
             </OptionContainer>
           </Container>
           <Button disabled={disabled} onClick={onSubmitVote}>
