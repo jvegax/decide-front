@@ -26,6 +26,24 @@ const dictionary: Dictionary = {
   enter_your_username: 'Introduce tu nombre de usuario',
   passwords_dont_match: 'Las contraseñas no coinciden',
   results: 'Mostrar resultados',
+  start_voting: 'Iniciar votación',
+  stop_voting: 'Detener votación',
+  tally_voting: 'Contar votos',
+  create_voting: 'Crear votación',
+  info_voting: 'Aquí debes seleccionar quien tiene permitido realizar votaciones',
+  census_voting:'Datos del censo',
+  options_voting: 'Opciones',
+  question_voting: 'Pregunta',
+  desc_voting: 'Descripción',
+  title_voting: 'Título de la votación',
+  data_voting: 'Datos de la votación',
+  new_voting: 'Nueva votación',
+  decide_role: 'Rol de staff',
+  profile: 'Perfil',
+  yes_role: 'Sí',
+  no_role: 'No',
+  telegram_channel: 'Canal de Telegram'
 };
+
 
 export default dictionary;
