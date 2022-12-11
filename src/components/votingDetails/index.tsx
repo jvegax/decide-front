@@ -9,6 +9,8 @@ import {
   Button,
   ButtonResult,
   ButtonStart,
+  ButtonStop,
+  ButtonTally
 } from "./styles";
 import { Props } from "./types";
 import { useTranslation } from "react-i18next";
@@ -32,7 +34,8 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
   };
 
   const startCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Pending" : false;
-
+  const stopCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Started" : false;
+  const tallyCondition = votacion !== null ? authenticated && user?.is_staff && getVotingStatus(votacion) === "Finished" : false;
 
   const handleStart = async (e: any) => {
     e.preventDefault();
@@ -48,6 +51,38 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
       })}).then((response) => navigate(`/`));
 
     
+  };
+
+  const handleStop = async (e: any) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const response= await fetch(`http://localhost:8000/voting/${votacion?.id}/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "stop",
+        token: token,
+      })}).then((response) => navigate(`/`));
+
+
+  };
+
+
+  const handleTally= async (e: any) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const response= await fetch(`http://localhost:8000/voting/${votacion?.id}/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "tally",
+        token: token,
+      })}).then((response) => navigate(`/visualizer/${votacion?.id}`)
+      );
   };
 
   const onSubmitVote = () => {
@@ -106,6 +141,16 @@ const VotingDetails: FC<Props> = ({ votacion  }) => {
 
           {startCondition &&(
             <ButtonStart onClick={handleStart}>{t("start_voting")}</ButtonStart>)
+
+          }
+
+          {stopCondition &&(
+            <ButtonStop onClick={handleStop}>{t("stop_voting")}</ButtonStop>)
+
+          }
+
+          {tallyCondition &&(
+            <ButtonTally onClick={handleTally}>{t("tally_voting")}</ButtonTally>)
 
           }
         </>
