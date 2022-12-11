@@ -116,18 +116,25 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
     setDisplayConfetti(true);
     //Send vote to backend OJO: esto corresponde al issue de registrar voto
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:8000/store/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        voting_id: votacion?.id,
-        voter_id: user?.id,
-        opt_number: optionChosen,
-        token: token,
-      }),
-    }).then((response) => navigate(`/visualizer/${votacion?.id}`));
+    try {
+      const res = await fetch(`http://localhost:8000/store/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          voting_id: votacion?.id,
+          voter_id: user?.id,
+          opt_number: optionChosen,
+          token: token,
+        }),
+      });
+
+      const data = await res.json();
+      console.log({ data });
+    } catch (error) {
+      console.log(error);
+    }
 
     setTimeout(() => {
       setDisplayConfetti(false);
