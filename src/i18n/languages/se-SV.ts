@@ -24,6 +24,24 @@ const dictionary = {
     enter_your_username: 'Ange ditt användarnamn',
     passwords_dont_match: 'Lösenorden matchar inte',
     results: 'Visa resultat',
+    start_voting: 'Starta röstningen',
+    stop_voting: 'Stoppa röstningen',
+    tally_voting: 'Räkna röstningen',
+    create_voting: 'Skapa röst',
+    info_voting: 'Här ska du välja vem som får rösta',
+    census_voting: 'Folkräkningsdata',
+    options_voting: 'Alternativ',
+    question_voting: 'Fråga',
+    desc_voting: 'Beskrivning',
+    title_voting: 'Röstningstitel',
+    data_voting: 'Datum', 
+    new_voting: 'Ny röst',
+    decide_role: 'Välj roll',
+    profile: 'Profil',
+    yes_role: 'Ja',
+    no_role: 'Nej',
+    telegram_channel: 'Telegramkanal'
+
 };
 
 export default dictionary;

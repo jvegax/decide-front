@@ -24,6 +24,23 @@ const dictionary = {
     enter_your_username: 'Geben Sie Ihren Benutzernamen ein',
     passwords_dont_match: 'Passwörter stimmen nicht übere',
     results: 'Zeige Ergebnisse',
+    start_voting: 'Starten Sie die Abstimmung',
+    stop_voting: 'Stoppen Sie die Abstimmung',
+    tally_voting: 'Abstimmung zählen',
+    create_voting: 'Abstimmung erstellen',
+    info_voting: 'Hier müssen Sie auswählen, wer abstimmen darf',
+    census_voting: 'Volkszählungsdaten',
+    options_voting: 'Optionen',
+    question_voting: 'Fragen',
+    desc_voting: 'Beschreibung',
+    title_voting: 'Abstimmungstitel',
+    data_voting: 'Abstimmungsdaten',
+    new_voting: 'Neue Abstimmung',
+    decide_role: 'Mitarbeiterrolle',
+    profile: 'Profil',
+    yes_role: 'Ja',
+    no_role: 'Nein',
+    telegram_channel: 'Telegrammkanal'
 };
 
 export default dictionary;

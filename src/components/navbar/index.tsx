@@ -32,7 +32,8 @@ const NavBar = () => {
         )}
         {authenticated && user?.is_staff && (
           <CreateVotingLink to="votacion/create">
-            Crear votación
+
+            {t("create_voting")}
           </CreateVotingLink>
         )}
       </LinkContainer>

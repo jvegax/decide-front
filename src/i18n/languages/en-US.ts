@@ -24,6 +24,24 @@ const dictionary = {
   enter_your_username: 'Enter your username',
   passwords_dont_match: 'Passwords dont match',
   results: 'Show results',
+  start_voting: 'Start voting',
+  stop_voting: 'Stop voting',
+  tally_voting: 'Tally voting',
+  create_voting: 'Create voting',
+  info_voting: 'Here you must select who is allowed to vote',
+  census_voting: 'Census data',
+  options_voting: 'Options',
+  question_voting: 'Question',
+  desc_voting: 'Description',
+  title_voting: 'Voting title',
+  data_voting: 'Voting data',
+  new_voting: 'New voting',
+  decide_role: 'Staff role',
+  profile: 'Profile',
+  yes_role: 'Yes',
+  no_role: 'No',
+  telegram_channel: 'Telegram channel'
+
 };
 
 export default dictionary;

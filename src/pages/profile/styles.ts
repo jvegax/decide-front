@@ -14,7 +14,40 @@ export const Button = styled.button`
   border: none;
 `;
 
-export const TelegramButton = styled.button``;
+export const TelegramContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+`;
+
+export const TelegramButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  max-width: 300px;
+  background-color: #87CEEB;
+  border-radius: 9px;
+  padding: 20px;
+  margin-top: 8px;
+  border: none;
+  &:hover {
+    background-color: #00BFFF;
+  }
+
+`;
+
+export const TelegramTitle = styled.div`
+  font-size: 22px;
+  font-weight: 600;
+  color: #000000;
+  
+
+`;
 
 export const DataContainer = styled.div`
   margin-bottom: 20px;
