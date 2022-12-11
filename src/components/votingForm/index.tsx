@@ -13,9 +13,11 @@ import {
   VotingContainer,
 } from "./styles";
 import { Census, VotingProps } from "./types";
+import { useTranslation } from "react-i18next";
 
 const VotingForm = () => {
   const { authenticated } = useAuth();
+  const { t } = useTranslation();
   const { user } = useDecide();
   const [name, setName] = useState<VotingProps["name"]>("");
   const [description, setDescription] = useState<VotingProps["desc"]>("");
@@ -69,12 +71,15 @@ const VotingForm = () => {
     {loading && <h1>Loading...</h1>}
       {authenticated && user?.is_staff ? (
         <>
-          <MainTitle>Nueva votación</MainTitle>
+          <MainTitle>{/*OJO: traducciones */}
+                {t("new_voting")} </MainTitle>
           <Form>
             <VotingContainer>
-              <Title>Datos de la votación</Title>
+              <Title>{/*OJO: traducciones */}
+                {t("data_voting")}  </Title>
               <LabelContainer>
-                Titulo de la votación
+                {/*OJO: traducciones */}
+                {t("title_voting")}                    
                 <Input
                   name="titulo"
                   type="text"
@@ -83,7 +88,8 @@ const VotingForm = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                Descripción de la votación
+                {/*OJO: traducciones */}
+                {t("desc_voting")}                
                 <Input
                   name="descripcion"
                   type="text"
@@ -92,7 +98,8 @@ const VotingForm = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                Pregunta
+                {/*OJO: traducciones */}
+              {t("question_voting")}
                 <Input
                   name="pregunta"
                   type="text"
@@ -101,7 +108,8 @@ const VotingForm = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                Opciones
+              {/*OJO: traducciones */}
+              {t("options_voting")}
                 <Input
                   name="opciones"
                   type="text"
@@ -117,12 +125,15 @@ const VotingForm = () => {
               </LabelContainer>
             </VotingContainer>
             <VotingContainer>
-              <Title>Datos del censo</Title>
+               {/*OJO: traducciones */}
+              <Title>{t("census_voting")}</Title>
               <Paragraph>
-                Aquí debes seleccionar quien tiene permitido realizar votaciones
+              {/*OJO: traducciones */}
+              {t("info_voting")}
               </Paragraph>
               <SubmitButton onClick={handleCreateVoting}>
-                Crear votación
+                {/*OJO: traducciones */}
+              {t("create_voting")}
               </SubmitButton>
             </VotingContainer>
           </Form>
