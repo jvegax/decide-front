@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { redirect } from "react-router-dom";
 import { normalizeUser, User } from "../models/User";
 import DecideContext from "./DecideContext";
 
@@ -16,14 +17,15 @@ const DecideProvider = (props: DecideProviderProps) => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token") || null
   );
+  const [message, setMessage] = useState("");
 
   const handleLogin = (username: string, password: string) => {
-    const API_URL = "http://127.0.0.1:8000/authentication/login/";
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    };
+  const API_URL = "http://127.0.0.1:8000/authentication/login/";
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  };
 
     // 1 - Get user auth token to verify login
     const getToken = async () => {
@@ -36,6 +38,7 @@ const DecideProvider = (props: DecideProviderProps) => {
           return data.token;
         }
       } catch (error) {
+        setMessage("Error en las credenciales");
         console.log({ error });
       }
     };
@@ -63,6 +66,7 @@ const DecideProvider = (props: DecideProviderProps) => {
         }
       } catch (error) {
         console.log({ error });
+        setMessage("Error en las credenciales")
       }
     };
     getUser();
@@ -99,6 +103,7 @@ const DecideProvider = (props: DecideProviderProps) => {
     token,
     handleLogin,
     handleLogout,
+    message,
   };
 
   return (

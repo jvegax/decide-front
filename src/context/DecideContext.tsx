@@ -6,6 +6,7 @@ interface DecideContextProps {
   token: string | null;
   handleLogin: (username: string, password: string) => void;
   handleLogout: () => void;
+  message: string;
 }
 
 const DecideContext = createContext<DecideContextProps>({
@@ -13,6 +14,7 @@ const DecideContext = createContext<DecideContextProps>({
   token: null,
   handleLogin: () => {},
   handleLogout: () => {},
+  message: '',
 });
 
 export default DecideContext;

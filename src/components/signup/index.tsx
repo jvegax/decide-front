@@ -1,11 +1,10 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm, ErrorContainer } from "./styles";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 const Register = () => {
 
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +37,7 @@ const Register = () => {
           const data = await response.json();
           console.log(data.token);
           settoken(data.token);
-          navigate("/");
+          redirect("/");
           setMessage(user_created_successfully_tras);
         } else if (password!=password2){
           const data = await response.json();
