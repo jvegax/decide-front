@@ -17,6 +17,8 @@ jest.mock('react-router-dom', () => ({
 
 import en from '../i18n/languages/en-US'
 import es from '../i18n/languages/es-ES'
+import de from '../i18n/languages/de-DE'
+import se from '../i18n/languages/se-SV'
 import i18n from '../i18n/index';
 import { render, fireEvent, act, waitFor } from '@testing-library/react'
 import VotingDetails from '../components/votingDetails/index'
@@ -153,4 +155,88 @@ describe('Testear que el formulario de votación se internacionaliza correctamen
         expect(resultsButton).toBeInTheDocument()
         expect(stopButton).toBeInTheDocument()
     })
+
+    //Test 3: Comprobar que el formulario de votación se internacionaliza correctamente al idioma de-DE
+    test('Testear que el formulario de detalles votación se internacionaliza correctamente al idioma de-DE', () => {
+      const navbar = render(<MemoryRouter> <Navbar /></MemoryRouter>)
+
+      // cambiar el idioma a en-US
+      fireEvent.click(navbar.getByText('🇩🇪'))
+      let i18nMock: any
+      waitFor(() => 
+        i18n.changeLanguage('de_DE')
+
+      )
+        //mock i18n for correct language change
+        i18nMock = {
+          ...i18n,
+          language: 'de_DE',
+          changeLanguage: jest.fn(),
+          t: jest.fn().mockImplementation((key: string) => key),
+      };
+      
+      const component = render(
+          <I18nextProvider i18n={i18nMock}>
+              <I18nContext.Provider value={i18nMock}>
+                  <VotingDetails votacion={votacion} />
+              </I18nContext.Provider>
+          </I18nextProvider>
+      );
+
+  
+      const submitButton = component.getByText(de.submit_vote)
+      const resultsButton = component.getByText(de.results)
+      const stopButton = component.getByText(de.stop_voting)
+
+
+      //comprobar que el idioma se ha cambiado correctamente
+      expect(i18n.language).toBe('de_DE')
+  
+      //comprobar que los botones se han internacionalizado correctamente
+      expect(submitButton).toBeInTheDocument()
+      expect(resultsButton).toBeInTheDocument()
+      expect(stopButton).toBeInTheDocument()
     })
+
+    //Test 4: Comprobar que el formulario de votación se internacionaliza correctamente al idioma se-SV
+    test('Testear que el formulario de detalles votación se internacionaliza correctamente al idioma se-SV', () => {
+    const navbar = render(<MemoryRouter> <Navbar /></MemoryRouter>)
+
+    // cambiar el idioma a se-SV
+    fireEvent.click(navbar.getByText('🇸🇪'))
+    let i18nMock: any
+    waitFor(() => 
+      i18n.changeLanguage('se_SV')
+
+    )
+      //mock i18n for correct language change
+      i18nMock = {
+        ...i18n,
+        language: 'se_SV',
+        changeLanguage: jest.fn(),
+        t: jest.fn().mockImplementation((key: string) => key),
+    };
+    
+    const component = render(
+        <I18nextProvider i18n={i18nMock}>
+            <I18nContext.Provider value={i18nMock}>
+                <VotingDetails votacion={votacion} />
+            </I18nContext.Provider>
+        </I18nextProvider>
+    );
+
+
+    const submitButton = component.getByText(se.submit_vote)
+    const resultsButton = component.getByText(se.results)
+    const stopButton = component.getByText(se.stop_voting)
+
+
+    //comprobar que el idioma se ha cambiado correctamente
+    expect(i18n.language).toBe('se_SV')
+
+    //comprobar que los botones se han internacionalizado correctamente
+    expect(submitButton).toBeInTheDocument()
+    expect(resultsButton).toBeInTheDocument()
+    expect(stopButton).toBeInTheDocument()
+  })
+})
