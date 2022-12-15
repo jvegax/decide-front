@@ -23,13 +23,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { handleLogin, message } = useDecide();
-
   const navigate = useNavigate();
+
+  const onPressLogin = (e: any) => {
+    e.preventDefault();
+    const { user } = handleLogin(username, password);
+    if (user) {
+      navigate("/");
+    }
+    
+  };
 
   return (
     <Container>
       <Title>{t("log_in_to_decide")}</Title>
-      {message && <ErrorContainer>{message}</ErrorContainer>}
+      {!!message && <ErrorContainer>{message}</ErrorContainer>}
       <LoginForm>
         <Label>
           {username_tras}:
@@ -51,7 +59,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Label>
-        <LogButton onClick={()=> {handleLogin(username, password); navigate('/')}} className="btn-register">
+        <LogButton onClick={onPressLogin} className="btn-register">
           {t("login")}
         </LogButton>
       </LoginForm>

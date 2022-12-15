@@ -19,6 +19,8 @@ const DecideProvider = (props: DecideProviderProps) => {
   );
   const [message, setMessage] = useState("");
 
+  const [message, setMessage] = useState<string>("");
+
   const handleLogin = (username: string, password: string) => {
   const API_URL = "http://127.0.0.1:8000/authentication/login/";
   const options = {
@@ -36,10 +38,13 @@ const DecideProvider = (props: DecideProviderProps) => {
           setToken(data.token);
           localStorage.setItem("token", data.token);
           return data.token;
+        } else if (response.status === 400) {
+          setMessage("Error: Invalid username or password");
         }
       } catch (error) {
         setMessage("Error en las credenciales");
         console.log({ error });
+        setMessage("Error: Invalid username or password");
       }
     };
 
@@ -59,10 +64,12 @@ const DecideProvider = (props: DecideProviderProps) => {
         const response = await fetch(API_URL, options);
         if (response.ok) {
           const data = await response.json();
-          console.log({data});
+          console.log({ data });
           const user = normalizeUser(data, token);
           setUser(user);
+          setMessage("");
           localStorage.setItem("user", JSON.stringify(user));
+          return user;
         }
       } catch (error) {
         console.log({ error });
@@ -70,7 +77,8 @@ const DecideProvider = (props: DecideProviderProps) => {
       }
     };
     getUser();
-  };
+    return { user };
+  }
 
   const handleLogout = () => {
     setUser(null);
@@ -101,6 +109,7 @@ const DecideProvider = (props: DecideProviderProps) => {
   const contextValue = {
     user,
     token,
+    message,
     handleLogin,
     handleLogout,
     message,
