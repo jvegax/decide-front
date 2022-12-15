@@ -1,6 +1,6 @@
 import { Title, Container, Input, Label, RegButton, RegisterForm, ErrorContainer } from "./styles";
 import { useState } from "react";
-import { redirect } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 const Register = () => {
@@ -16,6 +16,8 @@ const Register = () => {
   const user_created_successfully_tras = t('user_created_successfully').toString();
   const some_error_occurred_tras = t('some_error_occurred').toString();
   const passwords_dont_match_tras = t('passwords_dont_match').toString();
+
+  const navigate = useNavigate();
 
   const handleAuthReg = async (e: any) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ const Register = () => {
           const data = await response.json();
           console.log(data.token);
           settoken(data.token);
-          redirect("/");
+          navigate("/");
           setMessage(user_created_successfully_tras);
         } else if (password!=password2){
           const data = await response.json();

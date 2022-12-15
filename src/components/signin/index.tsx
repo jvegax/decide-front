@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import useDecide from "../../hooks/useDecide";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -23,6 +23,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { handleLogin, message } = useDecide();
+
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -49,7 +51,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Label>
-        <LogButton onClick={()=> handleLogin(username, password)} className="btn-register">
+        <LogButton onClick={()=> {handleLogin(username, password); navigate('/')}} className="btn-register">
           {t("login")}
         </LogButton>
       </LoginForm>

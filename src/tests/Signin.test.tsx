@@ -1,4 +1,10 @@
-import { render, screen } from '@testing-library/react';
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
+import { fireEvent, render, screen } from '@testing-library/react';
 import Login from '../components/signin/index';
 import '@testing-library/jest-dom'
 
@@ -24,20 +30,18 @@ describe('renderiza el login correctamente en español', () => {
     expect(screen.getByText('login')).toBeInTheDocument()
   });
 
-  // test('al iniciar sesion redirige correctamente al inicio', () => {
-  //   const mockRedirect = jest.fn();
-  //   const mockAuthToken = '123456';
+  test('al iniciar sesion redirige correctamente al inicio', () => {
+  
+    // render the login screen and click the login button
+    const { getByText } = render(<Login/>);
+    const loginButton = getByText('login');
+    // click en el boton de mostrar resultados
+    fireEvent.click(loginButton);
 
-  //   // render the login screen and click the login button
-  //   const { getByText } = render(<Login/>);
-  //   const loginButton = getByText('login');
-  //   fireEvent.click(loginButton);
+    // comprobar si se llama a la funcion navigate
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/');
 
-  //   // verify that the redirect function was called with the correct arguments
-  //   expect(mockRedirect).toHaveBeenCalledWith('/', {
-  //     authToken: mockAuthToken,
-  //   });
-  // });
+  });
 
 
 });

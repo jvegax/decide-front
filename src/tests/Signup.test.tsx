@@ -1,4 +1,10 @@
-import { render, screen } from '@testing-library/react';
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import { Register } from '../components';
 
@@ -27,5 +33,18 @@ describe('renderiza el registro correctamente en español', () => {
     render(<Register/>);
     expect(screen.getByText('register')).toBeInTheDocument()
   });
+
+  // test('al registrarse redirige correctamente al inicio', () => {
+  
+  //   // render the login screen and click the login button
+  //   const { getByText } = render(<Register/>);
+  //   const regButton = getByText('register');
+  //   // click en el boton de mostrar resultados
+  //   fireEvent.click(regButton);
+
+  //   // comprobar si se llama a la funcion navigate
+  //   expect(mockedUsedNavigate).toHaveBeenCalledWith('/');
+
+  // });
 
 });
