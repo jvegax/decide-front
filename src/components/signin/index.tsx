@@ -21,20 +21,23 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
-  const { handleLogin } = useDecide();
+  const { handleLogin, message } = useDecide();
   const navigate = useNavigate();
 
-  const onPressLogin = () => {
-    handleLogin(username, password);
-    navigate("/");
+  const onPressLogin = (e: any) => {
+    e.preventDefault();
+    const { user } = handleLogin(username, password);
+    if (user) {
+      navigate("/");
+    }
+    
   };
 
   return (
     <Container>
       <Title>{t("log_in_to_decide")}</Title>
-      {message && <ErrorContainer>{message}</ErrorContainer>}
+      {!!message && <ErrorContainer>{message}</ErrorContainer>}
       <LoginForm>
         <Label>
           {username_tras}:

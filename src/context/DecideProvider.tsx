@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { redirect } from "react-router-dom";
 import { normalizeUser, User } from "../models/User";
 import DecideContext from "./DecideContext";
 
@@ -17,6 +18,8 @@ const DecideProvider = (props: DecideProviderProps) => {
     localStorage.getItem("token") || null
   );
 
+  const [message, setMessage] = useState<string>("");
+
   const handleLogin = (username: string, password: string) => {
     const API_URL = "http://127.0.0.1:8000/authentication/login/";
     const options = {
@@ -34,9 +37,12 @@ const DecideProvider = (props: DecideProviderProps) => {
           setToken(data.token);
           localStorage.setItem("token", data.token);
           return data.token;
+        } else if (response.status === 400) {
+          setMessage("Error: Invalid username or password");
         }
       } catch (error) {
         console.log({ error });
+        setMessage("Error: Invalid username or password");
       }
     };
 
@@ -56,17 +62,20 @@ const DecideProvider = (props: DecideProviderProps) => {
         const response = await fetch(API_URL, options);
         if (response.ok) {
           const data = await response.json();
-          console.log({data});
+          console.log({ data });
           const user = normalizeUser(data, token);
           setUser(user);
+          setMessage("");
           localStorage.setItem("user", JSON.stringify(user));
+          return user;
         }
       } catch (error) {
         console.log({ error });
       }
     };
     getUser();
-  };
+    return { user };
+  }
 
   const handleLogout = () => {
     setUser(null);
@@ -97,6 +106,7 @@ const DecideProvider = (props: DecideProviderProps) => {
   const contextValue = {
     user,
     token,
+    message,
     handleLogin,
     handleLogout,
   };
