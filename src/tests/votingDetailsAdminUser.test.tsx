@@ -13,6 +13,7 @@ jest.mock('../hooks/useDecide', () => {
     });
 });
 
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import VotingDetails from '../components/votingDetails/index';
 import '@testing-library/jest-dom'
