@@ -17,9 +17,6 @@ const DecideProvider = (props: DecideProviderProps) => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token") || null
   );
-  const [message, setMessage] = useState("");
-
-  const [message, setMessage] = useState<string>("");
 
   const handleLogin = (username: string, password: string) => {
   const API_URL = "http://127.0.0.1:8000/authentication/login/";
