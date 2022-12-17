@@ -4,14 +4,14 @@ import { User } from "../models/User";
 interface DecideContextProps {
   user: User | null;
   token: string | null;
-  handleLogin: (username: string, password: string) => void;
+  handleLogin: (username: string, password: string) => { user: User | null };
   handleLogout: () => void;
 }
 
 const DecideContext = createContext<DecideContextProps>({
   user: null,
   token: null,
-  handleLogin: () => {},
+  handleLogin: () => ({ user: null }),
   handleLogout: () => {},
 });
 

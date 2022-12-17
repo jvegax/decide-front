@@ -18,12 +18,12 @@ const DecideProvider = (props: DecideProviderProps) => {
   );
 
   const handleLogin = (username: string, password: string) => {
-    const API_URL = "http://127.0.0.1:8000/authentication/login/";
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    };
+  const API_URL = "http://127.0.0.1:8000/authentication/login/";
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  };
 
     // 1 - Get user auth token to verify login
     const getToken = async () => {
@@ -34,6 +34,8 @@ const DecideProvider = (props: DecideProviderProps) => {
           setToken(data.token);
           localStorage.setItem("token", data.token);
           return data.token;
+        } else if (response.status === 400) {
+          console.log("Invalid credentials");
         }
       } catch (error) {
         console.log({ error });
@@ -56,17 +58,19 @@ const DecideProvider = (props: DecideProviderProps) => {
         const response = await fetch(API_URL, options);
         if (response.ok) {
           const data = await response.json();
-          console.log({data});
+          console.log({ data });
           const user = normalizeUser(data, token);
           setUser(user);
           localStorage.setItem("user", JSON.stringify(user));
+          return user;
         }
       } catch (error) {
         console.log({ error });
       }
     };
     getUser();
-  };
+    return { user };
+  }
 
   const handleLogout = () => {
     setUser(null);
