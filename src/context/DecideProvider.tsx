@@ -1,5 +1,4 @@
 import { ReactNode, useState } from "react";
-import { redirect } from "react-router-dom";
 import { normalizeUser, User } from "../models/User";
 import DecideContext from "./DecideContext";
 
@@ -36,12 +35,10 @@ const DecideProvider = (props: DecideProviderProps) => {
           localStorage.setItem("token", data.token);
           return data.token;
         } else if (response.status === 400) {
-          setMessage("Error: Invalid username or password");
+          console.log("Invalid credentials");
         }
       } catch (error) {
-        setMessage("Error en las credenciales");
         console.log({ error });
-        setMessage("Error: Invalid username or password");
       }
     };
 
@@ -64,13 +61,11 @@ const DecideProvider = (props: DecideProviderProps) => {
           console.log({ data });
           const user = normalizeUser(data, token);
           setUser(user);
-          setMessage("");
           localStorage.setItem("user", JSON.stringify(user));
           return user;
         }
       } catch (error) {
         console.log({ error });
-        setMessage("Error en las credenciales")
       }
     };
     getUser();
@@ -106,10 +101,8 @@ const DecideProvider = (props: DecideProviderProps) => {
   const contextValue = {
     user,
     token,
-    message,
     handleLogin,
     handleLogout,
-    message,
   };
 
   return (
