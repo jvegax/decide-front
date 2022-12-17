@@ -22,7 +22,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { handleLogin, message } = useDecide();
+  const { handleLogin } = useDecide();
   const navigate = useNavigate();
 
   const onPressLogin = (e: any) => {
@@ -37,7 +37,6 @@ const Login = () => {
   return (
     <Container>
       <Title>{t("log_in_to_decide")}</Title>
-      {!!message && <ErrorContainer>{message}</ErrorContainer>}
       <LoginForm>
         <Label>
           {username_tras}:
