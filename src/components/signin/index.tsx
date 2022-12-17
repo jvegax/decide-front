@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import useDecide from "../../hooks/useDecide";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -21,20 +21,22 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const { handleLogin } = useDecide();
   const navigate = useNavigate();
 
-  const onPressLogin = () => {
-    handleLogin(username, password);
-    navigate("/");
+  const onPressLogin = (e: any) => {
+    e.preventDefault();
+    const { user } = handleLogin(username, password);
+    if (user) {
+      navigate("/");
+    }
+    
   };
 
   return (
     <Container>
       <Title>{t("log_in_to_decide")}</Title>
-      {message && <ErrorContainer>{message}</ErrorContainer>}
       <LoginForm>
         <Label>
           {username_tras}:
