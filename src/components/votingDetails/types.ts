@@ -2,7 +2,7 @@ import { Voting } from "../votingCard/types";
 
 export type Props = {
     votacion: Voting | null;
-    loading: boolean;
+    loading?: boolean;
 }
 
 export type OptionProps = {
