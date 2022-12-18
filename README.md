@@ -17,3 +17,6 @@ https://github.com/jvegax/decide
 
 # Enviar voto
 <img width="1430" alt="Captura de pantalla 2022-12-18 a las 19 44 14" src="https://user-images.githubusercontent.com/49287932/208313946-42fd949f-4864-4a6c-ac68-8071851db13e.png">
+
+# Resultados de la votación
+<img width="1407" alt="Captura de pantalla 2022-12-18 a las 19 48 50" src="https://user-images.githubusercontent.com/49287932/208314126-165e4faf-eede-4059-8b53-883d4eb3d7c4.png">
