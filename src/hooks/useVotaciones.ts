@@ -7,7 +7,7 @@ const useVotaciones = () => {
 
   const getVotaciones = useMemo(async () => {
     setLoading(true);
-    const url = "http://127.0.0.1:8000/voting/";
+    const url = "https://decide-production-0ae9.up.railway.app/voting/";
     const response = await fetch(url);
     const data = await response.json();
     const votaciones: Voting[] = data.map((voting: any) => {
