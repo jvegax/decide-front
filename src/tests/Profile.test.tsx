@@ -19,7 +19,6 @@ jest.mock("../hooks/useDecide", () => {
 
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-
 import { Profile } from "../pages";
 
 describe("Testear el componente de perfil", () => {
