@@ -23,7 +23,6 @@ const VotingForm = () => {
   const [description, setDescription] = useState<VotingProps["desc"]>("");
   const [question, setQuestion] = useState<VotingProps["question"]>("");
   const [options, setOptions] = useState<VotingProps["question_opt"]>([]);
-  const [voters, setVoters] = useState<Census["voters"]>([]);
   const [firstOption, setFirstOption] = useState<string>("");
   const [secondOption, setSecondOption] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -31,14 +30,20 @@ const VotingForm = () => {
   const navigate = useNavigate();
 
   const handleCreateVoting = async () => {
-    if (!!name && !!description && !!question && !!firstOption && !!secondOption) {
+    if (
+      !!name &&
+      !!description &&
+      !!question &&
+      !!firstOption &&
+      !!secondOption
+    ) {
       const createVoting = async () => {
         setLoading(true);
         const voting = {
           name,
           desc: description,
           question,
-          question_opt:options,
+          question_opt: options,
           token: user?.auth_token,
         };
         try {
@@ -68,18 +73,15 @@ const VotingForm = () => {
   }, [firstOption, secondOption]);
   return (
     <>
-    {loading && <h1>Loading...</h1>}
+      {loading && <h1>Loading...</h1>}
       {authenticated && user?.is_staff ? (
         <>
-          <MainTitle>{/*OJO: traducciones */}
-                {t("new_voting")} </MainTitle>
+          <MainTitle>{t("new_voting")} </MainTitle>
           <Form>
             <VotingContainer>
-              <Title>{/*OJO: traducciones */}
-                {t("data_voting")}  </Title>
+              <Title>{t("data_voting")} </Title>
               <LabelContainer>
-                {/*OJO: traducciones */}
-                {t("title_voting")}                    
+                {t("title_voting")}
                 <Input
                   name="titulo"
                   type="text"
@@ -88,8 +90,7 @@ const VotingForm = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                {/*OJO: traducciones */}
-                {t("desc_voting")}                
+                {t("desc_voting")}
                 <Input
                   name="descripcion"
                   type="text"
@@ -98,8 +99,7 @@ const VotingForm = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-                {/*OJO: traducciones */}
-              {t("question_voting")}
+                {t("question_voting")}
                 <Input
                   name="pregunta"
                   type="text"
@@ -108,8 +108,7 @@ const VotingForm = () => {
                 />
               </LabelContainer>
               <LabelContainer>
-              {/*OJO: traducciones */}
-              {t("options_voting")}
+                {t("options_voting")}
                 <Input
                   name="opciones"
                   type="text"
@@ -125,15 +124,10 @@ const VotingForm = () => {
               </LabelContainer>
             </VotingContainer>
             <VotingContainer>
-               {/*OJO: traducciones */}
               <Title>{t("census_voting")}</Title>
-              <Paragraph>
-              {/*OJO: traducciones */}
-              {t("info_voting")}
-              </Paragraph>
+              <Paragraph>{t("info_voting")}</Paragraph>
               <SubmitButton onClick={handleCreateVoting}>
-                {/*OJO: traducciones */}
-              {t("create_voting")}
+                {t("create_voting")}
               </SubmitButton>
             </VotingContainer>
           </Form>
