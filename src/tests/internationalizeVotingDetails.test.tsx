@@ -19,13 +19,13 @@ import es from "../i18n/languages/es-ES";
 import de from "../i18n/languages/de-DE";
 import se from "../i18n/languages/se-SV";
 import i18n from "../i18n/index";
+import { I18nContext, I18nextProvider } from "react-i18next";
 import { render, fireEvent, act, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import VotingDetails from "../components/votingDetails/index";
 import Navbar from "../components/navbar/index";
 import { Voting } from "../components/votingCard/types";
 import { MemoryRouter } from "react-router-dom";
-import { I18nContext, I18nextProvider } from "react-i18next";
 
 // mock use navigate
 const mockedUsedNavigate = jest.fn();
