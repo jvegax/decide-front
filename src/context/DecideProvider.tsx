@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
 import { normalizeUser, User } from "../models/User";
 import DecideContext from "./DecideContext";
 
@@ -19,62 +20,15 @@ const DecideProvider = (props: DecideProviderProps) => {
 
   const [message, setMessage] = useState<string>("");
 
-  const handleLogin = (username: string, password: string) => {
-    const API_URL = "http://127.0.0.1:8000/authentication/login/";
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    };
+  const [userLoading, setUserLoading] = useState<boolean>(false);
 
-    // 1 - Get user auth token to verify login
-    const getToken = async () => {
-      try {
-        const response = await fetch(API_URL, options);
-        if (response.ok) {
-          const data = await response.json();
-          setToken(data.token);
-          localStorage.setItem("token", data.token);
-          return data.token;
-        } else if (response.status === 400) {
-          setMessage("No se puede iniciar sesión con estas credenciales");
-        }
-      } catch (error) {
-        console.log({ error });
-        setMessage("No se puede iniciar sesión con estas credenciales");
-      }
-    };
+  const handleSetUser = (user: User) => {
+    setUser(user);
+  }
 
-    // 2 - Get user data
-    const getUser = async () => {
-      const token = await getToken();
-      const data = {
-        token: token,
-      };
-      const API_URL = "http://127.0.0.1:8000/authentication/getuser/";
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      };
-      try {
-        const response = await fetch(API_URL, options);
-        if (response.ok) {
-          const data = await response.json();
-          console.log({ data });
-          const user = normalizeUser(data, token);
-          setUser(user);
-          setMessage("");
-          localStorage.setItem("user", JSON.stringify(user));
-          return user;
-        }
-      } catch (error) {
-        console.log({ error });
-      }
-    };
-    getUser();
-    return { user };
-  };
+  const handleSetToken = (token: string) => {
+    setToken(token);
+  }
 
   const handleLogout = () => {
     setUser(null);
@@ -105,9 +59,11 @@ const DecideProvider = (props: DecideProviderProps) => {
   const contextValue = {
     user,
     token,
-    handleLogin,
+    handleSetUser,
+    handleSetToken,
     handleLogout,
     message,
+    userLoading,
   };
 
   return (

@@ -5,7 +5,9 @@ interface DecideContextProps {
   user: User | null;
   token: string | null;
   message: string;
-  handleLogin: (username: string, password: string) => { user: User | null };
+  userLoading: boolean;
+  handleSetUser: (user: User) => void;
+  handleSetToken: (token : string) => void;
   handleLogout: () => void;
 }
 
@@ -13,7 +15,9 @@ const DecideContext = createContext<DecideContextProps>({
   user: null,
   token: null,
   message: '',
-  handleLogin: () => ({ user: null }),
+  userLoading: false,
+  handleSetUser: () => {},
+  handleSetToken: () => {},
   handleLogout: () => {},
 });
 
