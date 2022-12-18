@@ -3,6 +3,7 @@ import useVotaciones from "../../hooks/useVotaciones";
 import VotingCard from "../votingCard";
 import { ListContainer } from "./styles";
 import { useTranslation } from "react-i18next";
+import SpinnerIndicator from "../spinner";
 
 const VotingList = () => {
   const { t } = useTranslation();
@@ -16,7 +17,13 @@ const VotingList = () => {
   return (
     <>
       <h1>{t("voting_lists")}</h1>
-      <ListContainer>{!loading && handleRenderVotaciones()}</ListContainer>
+      <ListContainer>
+        {loading ? (
+          <SpinnerIndicator color="#343434ed" />
+        ) : (
+          handleRenderVotaciones()
+        )}
+      </ListContainer>
     </>
   );
 };

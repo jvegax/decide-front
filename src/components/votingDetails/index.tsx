@@ -20,8 +20,9 @@ import { Status } from "../votingCard/styles";
 import Confetti from "react-confetti";
 import useDecide from "../../hooks/useDecide";
 import useAuth from "../../hooks/useAuth";
+import SpinnerIndicator from "../spinner";
 
-const VotingDetails: FC<Props> = ({ votacion }) => {
+const VotingDetails: FC<Props> = ({ votacion, loading }) => {
   const { t } = useTranslation();
   const [displayConfetti, setDisplayConfetti] = useState(false);
   const navigate = useNavigate();
@@ -174,38 +175,50 @@ const VotingDetails: FC<Props> = ({ votacion }) => {
       )}
       {!displayConfetti && (
         <>
-          <Container>
-            <Status status={handleStatus}>{handleStatus}</Status>
-            <Title>{votacion?.name}</Title>
-            <Description>{votacion?.desc}</Description>
-            <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
-            <OptionContainer>
-              {votacion?.question?.options?.map((option) => (
-                <Option
-                  chosen={option.number === optionChosen}
-                  key={option.number}
-                  onClick={() => handleOptionChosen(option.number)}
-                >
-                  {option.option}
-                </Option>
-              ))}
-            </OptionContainer>
-          </Container>
-          <Button disabled={disabled} onClick={onSubmitVote}>
-            {t("submit_vote")}
-          </Button>
-          <ButtonResult onClick={handleResults}>{t("results")}</ButtonResult>
+          {loading ? (
+            <SpinnerIndicator color="#2f2f2f" />
+          ) : (
+            <>
+              <Container>
+                <Status status={handleStatus}>{handleStatus}</Status>
+                <Title>{votacion?.name}</Title>
+                <Description>{votacion?.desc}</Description>
+                <QuestionTitle>{votacion?.question?.desc}</QuestionTitle>
+                <OptionContainer>
+                  {votacion?.question?.options?.map((option) => (
+                    <Option
+                      chosen={option.number === optionChosen}
+                      key={option.number}
+                      onClick={() => handleOptionChosen(option.number)}
+                    >
+                      {option.option}
+                    </Option>
+                  ))}
+                </OptionContainer>
+              </Container>
+              <Button disabled={disabled} onClick={onSubmitVote}>
+                {t("submit_vote")}
+              </Button>
+              <ButtonResult onClick={handleResults}>
+                {t("results")}
+              </ButtonResult>
 
-          {startCondition && (
-            <ButtonStart onClick={handleStart}>{t("start_voting")}</ButtonStart>
-          )}
+              {startCondition && (
+                <ButtonStart onClick={handleStart}>
+                  {t("start_voting")}
+                </ButtonStart>
+              )}
 
-          {stopCondition && (
-            <ButtonStop onClick={handleStop}>{t("stop_voting")}</ButtonStop>
-          )}
+              {stopCondition && (
+                <ButtonStop onClick={handleStop}>{t("stop_voting")}</ButtonStop>
+              )}
 
-          {tallyCondition && (
-            <ButtonTally onClick={handleTally}>{t("tally_voting")}</ButtonTally>
+              {tallyCondition && (
+                <ButtonTally onClick={handleTally}>
+                  {t("tally_voting")}
+                </ButtonTally>
+              )}
+            </>
           )}
         </>
       )}

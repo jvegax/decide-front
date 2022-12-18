@@ -5,11 +5,11 @@ import useVotaciones from "../../hooks/useVotaciones";
 
 const Details = () => {
   const { id } = useParams();
-  const { votaciones } = useVotaciones();
+  const { votaciones, loading } = useVotaciones();
   const votacion =
     votaciones.find((votacion) => votacion.id === Number(id)) || null;
 
-  return <VotingDetails votacion={votacion} />;
+  return <VotingDetails votacion={votacion} loading={loading} />;
 };
 
 export default memo(Details);
