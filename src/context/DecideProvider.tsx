@@ -17,13 +17,15 @@ const DecideProvider = (props: DecideProviderProps) => {
     localStorage.getItem("token") || null
   );
 
+  const [message, setMessage] = useState<string>("");
+
   const handleLogin = (username: string, password: string) => {
-  const API_URL = "http://127.0.0.1:8000/authentication/login/";
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  };
+    const API_URL = "http://127.0.0.1:8000/authentication/login/";
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    };
 
     // 1 - Get user auth token to verify login
     const getToken = async () => {
@@ -35,10 +37,11 @@ const DecideProvider = (props: DecideProviderProps) => {
           localStorage.setItem("token", data.token);
           return data.token;
         } else if (response.status === 400) {
-          console.log("Invalid credentials");
+          setMessage("No se puede iniciar sesión con estas credenciales");
         }
       } catch (error) {
         console.log({ error });
+        setMessage("No se puede iniciar sesión con estas credenciales");
       }
     };
 
@@ -61,6 +64,7 @@ const DecideProvider = (props: DecideProviderProps) => {
           console.log({ data });
           const user = normalizeUser(data, token);
           setUser(user);
+          setMessage("");
           localStorage.setItem("user", JSON.stringify(user));
           return user;
         }
@@ -70,7 +74,7 @@ const DecideProvider = (props: DecideProviderProps) => {
     };
     getUser();
     return { user };
-  }
+  };
 
   const handleLogout = () => {
     setUser(null);
@@ -103,6 +107,7 @@ const DecideProvider = (props: DecideProviderProps) => {
     token,
     handleLogin,
     handleLogout,
+    message,
   };
 
   return (
